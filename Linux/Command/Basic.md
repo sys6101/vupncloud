@@ -35,11 +35,24 @@ Ngoài ra còn có thể tạo thư mục mới bên trong một thư mục khá
 7. `rmdir`     
 Sử dụng để xóa các thư mục trống    
 
-8. `rm` 
+8. `rm`     
 Sử dụng để xóa các thư mục và nội dung bên trong chúng `rm -r`  
 Có thể sử dụng lệnh `rm` mà không sử dụng tùy chọn `-r`. Trong trường hợp này, lệnh `rm` sẽ xóa tệp tin được chỉ định, nhưng nếu đó là một thư mục, lệnh sẽ không hoạt động và báo lỗi. 
 Vì vậy, nếu bạn muốn xóa một tệp tin duy nhất, bạn có thể sử dụng lệnh `rm <tên tệp>` để xóa tệp đó. Tuy nhiên, nếu bạn muốn xóa một thư mục và tất cả các tệp tin và thư mục con của nó, bạn cần sử dụng tùy chọn `-r` để xóa đệ quy toàn bộ cây thư mục con.  
 
-9. 
+9. `touch`  
+Lệnh `touch` cho phép bạn tạo một tệ mới trống thông qua dòng lệnh  
+Vd: `touch /home/test.py` để tạo tệp python     
+
+10. `locate`    
+Dùng đẻ định vị tệp như lệnh tìm kiếm trong windows.    
+Dùng đối số `-i` cùng với lệnh `locate` này sẽ làm cho nó ko phân  biệt chữ hoa chữ thường. 
+Tìm kiếm một tệp chứ 2 từ trở lên thì dùng `*`  
+Vd: `locate -i python*cat` sẽ tìm kiếm các tệp có chứ `python` và `cat` cho dù hoa hay thường.  
+
+11. `find`  
+Tương tự như lệnh `locate` chỉ khác là sử dụng để định các tệ trong một thư mục nhất định   
+
+
 
 
