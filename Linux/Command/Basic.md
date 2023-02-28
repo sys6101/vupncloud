@@ -58,22 +58,7 @@ Các biến thể khác khi sử dụng tìm kiếm là:
 - Để tìm các tệp trong thư mục sử dụng hiện tại, hãy sử dụng `find -name notes.txt` 
 - Để tìm kiếm thư mục sử dụng, `/ -type d -name notes.txt`  
 
-12. `grep`  
-Nó khá hữu ích cho viêc sử dụng hàng ngày   
-Nó cho phép tìm kiếm qua tất cả văn bản trong một tệp nhất định 
-Vd: `grep cloud test.txt` sẽ tìm kiếm từ `cloud` trong tệp `test.txt`  
-Cú pháp: `grep 'word' [file]`
-- `-r` tìm kiếm tất cả các file trong thư mục và thư mục con hiện tại
-- `-i` tìm theo cả trường hợp ký tự viết hoa
-- `-c` số lần xuất hiện của từ khoá
-- `-n` từ khoá xuất hiện dòng số bao nhiêu
-- `-v` in các dòng mà **không có** từ khoá
-- `-w` chỉ in dòng có đúng từ khoá
-  - `grep -w 'america' text.txt` sẽ chỉ tìm theo đúng từ _america_ chứ không có _american, americano_
-- `-l` chỉ hiện tên file có chứa từ khoá
-- `--color` tô màu từ khoá trong kết quả 
-
-13. `sudo`  
+12. `sudo`  
 Là từ viết tắt của  **SuperUser Do** lệnh này cho phép bạn thực hiện các tác vụ yêu cầu quyền quản trị hoặc quyền root. 
 Không nên sử dụng lệnh này hàng ngày vì có thể xảy ra lỗi nếu bạn làm sai.  
 
