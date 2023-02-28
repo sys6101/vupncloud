@@ -37,9 +37,8 @@ Sử dụng để xóa các thư mục trống
 
 8. `rm` 
 Sử dụng để xóa các thư mục và nội dung bên trong chúng `rm -r`  
-Có thể sử dụng lệnh "rm" mà không sử dụng tùy chọn "-r". Trong trường hợp này, lệnh "rm" sẽ xóa tệp tin được chỉ định, nhưng nếu đó là một thư mục, lệnh sẽ không hoạt động và báo lỗi. 
-
-Vì vậy, nếu bạn muốn xóa một tệp tin duy nhất, bạn có thể sử dụng lệnh "rm <tên tệp>" để xóa tệp đó. Tuy nhiên, nếu bạn muốn xóa một thư mục và tất cả các tệp tin và thư mục con của nó, bạn cần sử dụng tùy chọn "-r" để xóa đệ quy toàn bộ cây thư mục con.  
+Có thể sử dụng lệnh `rm` mà không sử dụng tùy chọn `-r`. Trong trường hợp này, lệnh `rm` sẽ xóa tệp tin được chỉ định, nhưng nếu đó là một thư mục, lệnh sẽ không hoạt động và báo lỗi. 
+Vì vậy, nếu bạn muốn xóa một tệp tin duy nhất, bạn có thể sử dụng lệnh `rm <tên tệp>` để xóa tệp đó. Tuy nhiên, nếu bạn muốn xóa một thư mục và tất cả các tệp tin và thư mục con của nó, bạn cần sử dụng tùy chọn `-r` để xóa đệ quy toàn bộ cây thư mục con.  
 
 9. 
 
