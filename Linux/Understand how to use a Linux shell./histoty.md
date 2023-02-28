@@ -8,7 +8,7 @@
 `history | grep [command]`  
 **Lặp lại câu lệnh gần nhất gõ `!!`**  
 **Các phím tắt**    
-`Ctrl + R` tìm một lệnh đã chạy trước đây, nhấn `Ctrl + R` rồi gỡ một phần của câu lệnh thì hệ thống sẽ tự hoàn tất phần còn lại    
+`Ctrl + R` tìm một lệnh đã chạy trước đây, nhấn `Ctrl + R` rồi gõ một phần của câu lệnh thì hệ thống sẽ tự hoàn tất phần còn lại    
  `Ctrl + S`: Dừng tất cả output trên màn hình.      
 
 
