@@ -10,5 +10,17 @@ Xem các biến môi được thiết lập : `printenv`
 Hiển thị giá trị của một biến cụ thể vd: 
 ``` 
 echo $HOME
-/home/pnv
+/home/vupn  
+``` 
+## Gán biến
+Gán biến tạm thời, reboot sẽ mất: 
 ```
+VUPN=value123
+echo $VUPN
+value123
+```
+
+Để đảm bảo các biến môi trường này tồn tại vĩnh viễn thì cần phải đặt vào file cấu hình phù hợp.
+- “/etc/environment” cho các biến trên toàn hệ thống
+- “/etc/profile” dành cho thiết lập các biến shell.
+- “~/.bashrc” dành cho mục đích các cá nhân
