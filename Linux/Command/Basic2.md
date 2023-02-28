@@ -15,9 +15,9 @@ Cú pháp: `grep 'word' [file]`
 - `--color` tô màu từ khoá trong kết quả    
 ## sed  
 Lệnh "sed" (viết tắt của Stream Editor) là một công cụ dòng lệnh có sẵn trong Unix và các hệ điều hành tương tự, được sử dụng để xử lý và biên tập văn bản đầu vào theo các quy tắc được xác định trước.    
-Nó được dùng để lọc văn bản , sửa đổi nội dung file, đặt nội dung vào một file mới. 
+Nó được dùng để lọc văn bản , sửa đổi nội dung file, đặt nội dung vào một file mới.     
 `sed 's/pattern/replacement/g' inputfile > outputfile`  
-Trong đó:
+Trong đó:   
 `s`  được sử dụng để chỉ định cho sed rằng bạn muốn thực hiện một thay thế chuỗi (string substitution)  
 `pattern` là chuỗi hoặc biểu thức chính quy (regex) mà bạn muốn tìm kiếm trong đầu vào.     
 `replacement` là chuỗi mà bạn muốn thay thế cho `pattern`.  
