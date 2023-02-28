@@ -17,7 +17,7 @@ Nó hỗ trợ rất mạnh cho dev C với đặc tính tự động hoàn toà
 4. ksh      
 Đây là shell được đánh giá khá cao vì nó kết hợp tính năng ưu việt của sh và csh    
 
-5.zsh   
+5. zsh   
 zsh được đánh giá là shell mạnh nhất trong thời gian gần dây. Hỗ trợ nhiều tính năng mạnh.
 
 
