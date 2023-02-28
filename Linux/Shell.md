@@ -14,7 +14,13 @@ Là phần mở rộng của sh, nó kế thừa nhưng gì sh có và phát huy
 3. csh  
 Nó hỗ trợ rất mạnh cho dev C với đặc tính tự động hoàn toàn dòng lệnh.  
 
-4. ksh  
+4. ksh      
+Đây là shell được đánh giá khá cao vì nó kết hợp tính năng ưu việt của sh và csh    
+
+5.zsh   
+zsh được đánh giá là shell mạnh nhất trong thời gian gần dây. Hỗ trợ nhiều tính năng mạnh.
+
+
 
 
 
