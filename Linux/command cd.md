@@ -10,5 +10,11 @@
  ## Chuyển về thư mục làm việc trước đó 
  sử  dụng `cd -`  hoặc sử  dụng `cd` theo sau đó là **khoảng trắng**    
  ## Chuyển sang thư mục gốc ( thư mục mẹ)   
+ sử dụng dấu chấm đôi `cd ..` để chuyển sang thư mục mẹ 
+ Để di chuyển hai cấp trên thư mục làm việc hiện tại dùng `cd ../../`   
+ ## Chuyển sang thư mục có tên chứa dấu cách    
+ Sử dụng dấ nháy đơn hoặc dấu ngoặc kép 
+ vd: `cd 'cloud data'`  
+ 
  
 
