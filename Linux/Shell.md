@@ -11,7 +11,7 @@ Nó rất hữu dụng cho việc lập trình Shell nhưng không xử lý tư�
 2. bash     
 Là phần mở rộng của sh, nó kế thừa nhưng gì sh có và phát huy những gì mà sh chưa có, Nó có giao diện dễ dùng linh hoạt. Đây là Shell được cài đặt mặc định trên Linux. 
 
-3. csh 
+3. csh  
 Nó hỗ trợ rất mạnh cho dev C với đặc tính tự động hoàn toàn dòng lệnh.  
 
 4. ksh  
