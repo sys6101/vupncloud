@@ -1,7 +1,7 @@
 # Lệnh Linux cơ bản     
 
 1. `pwd`    
-Lệnh `pwd` dùng để tùm ra đường dẫn thư mục làm việc hiện tại   
+Lệnh `pwd` dùng để tìm ra đường dẫn thư mục làm việc hiện tại   
 
 2. `ls`     
 Lệnh `ls` được sử dụng để xem nội dung của một thư mục. Theo mặc định lệnh này sẽ hiển thị nội dung của thư mục làm việc hiện tại.  
