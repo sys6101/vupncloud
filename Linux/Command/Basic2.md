@@ -30,6 +30,16 @@ Trong đó:
 
 Dùng để  kết hợp 2 tệp dữ liệu dựa trên một trường chung. Kết quả đàu ra sẽ bao gồm các dòng chưa các giá trị từ hai tệp ban đầu đã kết hợp với nhau dựa trên trường chung.   
 Cú pháp `join [options] filename1 filename2`    
-Trong đó `options` là các tùy chọn để chỉ định các trường và cách kết hợp dữ liệu.
+Trong đó `options` là các tùy chọn để chỉ định các trường và cách kết hợp dữ liệu.    
+Các tùy chọn phổ biến của lệnh `join`
+- `-a filenum`: kết hợp các dòng của file1 và hoặc file 2
+- `-t char`: sử dụng ký tự char như là ký tự phân tách trường ( mặc định là dấu cách)
+-  `-1 FIELD`: Chỉ định trường trong file1 để kết hợp (FIELD là số thứ tự của trường).
+- `-2 FIELD`: Chỉ định trường trong file2 để kết hợp (FIELD là số thứ tự của trường).
 
+##  paste
+
+Dùng để ghép 1 file với các file khác theo từng cột dữ liệu  
+Cú pháp `paste [options] file1 file2`   
+`-d` chọn ký tự giữa các cột thay vì `tab` ở mặc định   
 
