@@ -47,4 +47,6 @@ Cú pháp `paste [options] file1 file2`
 
 - Lệnh `tac` dùng để đảo ngược thứ tự các dòng của một tệp văn bản. VD: `tac filename.txt` sẽ in ra các dòng của tệp theo thứ tự ngược lại    
 - Lệnh `sort` dùng để sắp xếp  các dòng của một tệp văn bản.    
-- Lệnh `split` dùng để chia nhỏ một tệp văn bản thành các tệp nhỏ hơn dựa trên số lượng dòng hoặc kích thước. vd: `split -l 100 filename` sẽ chia tệp thành các tệp nhỏ hơn có 100 dòng mỗi tệp
+- Lệnh `split` dùng để chia nhỏ một tệp văn bản thành các tệp nhỏ hơn dựa trên số lượng dòng hoặc kích thước. vd: `split -l 100 filename --verbose thông báo sau khi tách` sẽ chia tệp thành các tệp nhỏ hơn có 100 dòng mỗi tệp.Trong đó --vervose là thông báo sau khi tách   
+- Lệnh `uniq` để loaij bỏ các dòng trùng lặp trong một tệp văn bản .    
+- lệnh `nl` dùng để đánh số thứ tự các dòng của một tệp văn bản.  
