@@ -43,6 +43,43 @@ Dùng để ghép 1 file với các file khác theo từng cột dữ liệu
 Cú pháp `paste [options] file1 file2`   
 `-d` chọn ký tự giữa các cột thay vì `tab` ở mặc định   
 
+## awk
+
+Lệnh `awk` là một công cụ xử lý văn bản mạnh mẽ trên hệ điều hành Linux. Nó cho phép bạn tìm kiếm, sắp xếp, xử lý và hiển thị dữ liệu từ các tệp tin hoặc đầu vào chuẩn. Dưới đây là một số ví dụ về cách sử dụng lệnh `awk`:
+
+- Hiển thị toàn bộ nội dung của tệp tin:
+
+  `awk '{print}' filename`
+
+- Hiển thị tất cả các dòng chứa từ khóa "pattern" trong tệp tin:
+
+  `awk '/pattern/ {print}' filename`
+
+- Hiển thị số lượng các dòng trong tệp tin:
+
+  `awk 'END {print NR}' filename`
+
+- Hiển thị nội dung của cột thứ hai trong tệp tin, ngăn cách bởi dấu phẩy:
+
+  `awk -F',' '{print $2}' filename`
+
+- Tính tổng các số trong tệp tin:
+
+  `awk '{sum += $1} END {print sum}' filename`
+
+- Hiển thị dòng đầu tiên của tệp tin:
+
+  `awk 'NR==1 {print}' filename`
+
+- Sắp xếp các dòng trong tệp tin theo thứ tự tăng dần của cột thứ hai:
+
+  `awk '{print $0 | "sort -n -k2"}' filename`
+
+- Hiển thị tất cả các dòng có độ dài lớn hơn 80 ký tự trong tệp tin:
+
+  `awk 'length > 80 {print}' filename`
+
+
 ## Các lệnh ‘tac’, ‘sort’, ‘split’, ‘uniq’, ‘nl’
 
 - Lệnh `tac` dùng để đảo ngược thứ tự các dòng của một tệp văn bản. VD: `tac filename.txt` sẽ in ra các dòng của tệp theo thứ tự ngược lại    
