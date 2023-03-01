@@ -43,3 +43,8 @@ Dùng để ghép 1 file với các file khác theo từng cột dữ liệu
 Cú pháp `paste [options] file1 file2`   
 `-d` chọn ký tự giữa các cột thay vì `tab` ở mặc định   
 
+## Các lệnh ‘tac’, ‘sort’, ‘split’, ‘uniq’, ‘nl’
+
+- Lệnh `tac` dùng để đảo ngược thứ tự các dòng của một tệp văn bản. VD: `tac filename.txt` sẽ in ra các dòng của tệp theo thứ tự ngược lại    
+- Lệnh `sort` dùng để sắp xếp  các dòng của một tệp văn bản.    
+- Lệnh `split` dùng để chia nhỏ một tệp văn bản thành các tệp nhỏ hơn dựa trên số lượng dòng hoặc kích thước. vd: `split -l 100 filename` sẽ chia tệp thành các tệp nhỏ hơn có 100 dòng mỗi tệp
