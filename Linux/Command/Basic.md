@@ -9,7 +9,7 @@ Nếu muốn xem nội dung của thư mục khác thì nhập lệnh   `ls` r�
 - `ls -R` cũng sẽ liệt kê tất cả các tệp trong các thư mục con    
 - `ls -a` sẽ hiển thị các tệp ẩn  
 - `ls -al` sẽ liệt kê các tệp và thư mục với thông tin chi tiết như quyền, kích thước, chủ sở hữu, v.v.   
-
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/pwd.png)    
 3. `cat`    
 Đây là một trong những lệnh sử dụng thường xuyên trong Linux.   
 Nó dùng để liệt kê nội dung của một tệp trên đầu ra chuẩn(sdout).   
