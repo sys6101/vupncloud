@@ -33,6 +33,8 @@ Trong đó:
 `pattern` là chuỗi hoặc biểu thức chính quy (regex) mà bạn muốn tìm kiếm trong đầu vào.
 `replacement` là chuỗi mà bạn muốn thay thế cho `pattern`.  
 `g` là tùy chọn toàn cục (global) để thay thế tất cả các trường hợp của `pattern` trong mỗi dòng. Nếu bạn muốn chỉ thay thế trường hợp đầu tiên, bạn có thể bỏ tùy chọn này.  
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/sed1.png)
+
 
 ## join
 
