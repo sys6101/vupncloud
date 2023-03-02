@@ -14,8 +14,9 @@ Nếu muốn xem nội dung của thư mục khác thì nhập lệnh   `ls` r�
 Đây là một trong những lệnh sử dụng thường xuyên trong Linux.   
 Nó dùng để liệt kê nội dung của một tệp trên đầu ra chuẩn(sdout).   
 Một số cách dùng `cat`  
-- `cat > filename` để tạo một tệp mới tên là `filename` 
-- `cat filename1 filename2>filename3` kết hợp tệp 1 và 2 lưu trữ kết quả vào tệp 3  
+- `cat > filename` để tạo một tệp mới tên là `filename`     
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/cat1.png)  
+
 - Chuyển đổi một tệp sang sử dụng chữ hoa hoặc chữ thường `cat filename | tr a-z A-Z>output.txt`( "tr" là viết tắt của từ "translate" trong Unix )  
 
 4. `cp` 
