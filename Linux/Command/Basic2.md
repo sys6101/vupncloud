@@ -8,7 +8,7 @@ Vd: `grep cloud test.txt` sẽ tìm kiếm từ `cloud` trong tệp `test.txt`
 
 - `-r` tìm kiếm tất cả các file trong thư mục và thư mục con hiện tại   
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep2.png)
-- `-i` tìm theo cả trường hợp ký tự viết hoa
+- `-i` tìm theo cả trường hợp ký tự viết hoa  
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep3.png)
 - `-c` số lần xuất hiện của từ khoá   
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep4.png)
