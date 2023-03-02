@@ -2,17 +2,25 @@
 
 Nó khá hữu ích cho viêc sử dụng hàng ngày
 Nó cho phép tìm kiếm qua tất cả văn bản trong một tệp nhất định  
+Cú pháp: `grep 'word' [file]`   
 Vd: `grep cloud test.txt` sẽ tìm kiếm từ `cloud` trong tệp `test.txt`  
-Cú pháp: `grep 'word' [file]`
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep1.png)
 
-- `-r` tìm kiếm tất cả các file trong thư mục và thư mục con hiện tại
+- `-r` tìm kiếm tất cả các file trong thư mục và thư mục con hiện tại   
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep2.png)
 - `-i` tìm theo cả trường hợp ký tự viết hoa
-- `-c` số lần xuất hiện của từ khoá
-- `-n` từ khoá xuất hiện dòng số bao nhiêu
-- `-v` in các dòng mà **không có** từ khoá
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep3.png)
+- `-c` số lần xuất hiện của từ khoá   
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep4.png)
+- `-n` từ khoá xuất hiện dòng số bao nhiêu    
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep5.png)
+- `-v` in các dòng mà **không có** từ khoá  
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep6.png)
 - `-w` chỉ in dòng có đúng từ khoá
-  - `grep -w 'test' test.txt` sẽ chỉ tìm theo đúng từ _test_ chứ không có _tester..._
-- `-l` chỉ hiện tên file có chứa từ khoá
+  - `grep -w 'test' test.txt` sẽ chỉ tìm theo đúng từ _test_ chứ không có _tester..._   
+  ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep7.png)
+
+
 - `--color` tô màu từ khoá trong kết quả
 
 ## sed
