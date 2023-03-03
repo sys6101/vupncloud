@@ -1,3 +1,4 @@
-**Foreground process**: Là tiến trình đơn giản là chạy hiển thị trên màn hình. Nó thực hiện bởi sự can thiệp của người dùng.
+**Foreground process**: Là tiến trình đơn giản là chạy hiển thị trên màn hình. Nó thực hiện bởi sự can thiệp của người dùng.Các tiến trình foreground thường là những tiến trình tương tác với người dùng. Khi bạn chạy một tiến trình foreground, terminal sẽ bị chặn và không thể sử dụng cho các tác vụ khác cho đến khi tiến trình đó hoàn thành hoặc bạn dừng nó bằng phím tắt Ctrl + C. Ví dụ về các tiến trình foreground là các lệnh nhập liệu, các trình biên dịch hoặc các ứng dụng đồ họa.
 
-**Background process**: là tiến trình chạy dưới nền ko cần sự can thiệp của người dùng
+**Background process**: là tiến trình chạy dưới nền ko cần sự can thiệp của người dùng.Các tiến trình background là những tiến trình chạy ngầm và không ảnh hưởng đến việc sử dụng terminal. Khi bạn chạy một tiến trình background, nó sẽ không hiển thị kết quả trực tiếp trong terminal. Thay vào đó, các kết quả của tiến trình đó sẽ được lưu vào tệp tin hoặc hiển thị trên màn hình một cách tuỳ chọn. Ví dụ về các tiến trình background là các tiến trình đồng bộ hóa dữ liệu, các tiến trình máy chủ hoặc các tiến trình sao lưu.
+
