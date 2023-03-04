@@ -39,7 +39,7 @@ Trong đó:
 ## join
 
 Dùng để  kết hợp 2 tệp dữ liệu dựa trên một trường chung. Kết quả đàu ra sẽ bao gồm các dòng chưa các giá trị từ hai tệp ban đầu đã kết hợp với nhau dựa trên trường chung.   
-Cú pháp `join [options] test1.txt1 test1.txt2`    
+Cú pháp `join [options] test1.txt test2.txt`    
 Trong đó `options` là các tùy chọn để chỉ định các trường và cách kết hợp dữ liệu.    
 Các tùy chọn phổ biến của lệnh `join`
 - `-a filenum`: kết hợp các dòng của file1 và hoặc file 2
@@ -73,7 +73,7 @@ Lệnh `awk` là một công cụ xử lý văn bản mạnh mẽ trên hệ đi
 - Hiển thị số lượng các dòng trong tệp tin:
 
   `awk 'END {print NR}' test1.txt`   
-  ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/awk3.png) 
+  ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/awk3.png) 
 
 - Hiển thị nội dung của cột thứ hai trong tệp tin, ngăn cách bởi dấu phẩy:
 
@@ -83,12 +83,12 @@ Lệnh `awk` là một công cụ xử lý văn bản mạnh mẽ trên hệ đi
 - Tính tổng các số trong tệp tin:
 
   `awk '{sum += $1} END {print sum}' test1.txt`   
-   ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/awk4.png)
+   ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/awk4.png)
 
 - Hiển thị dòng đầu tiên của tệp tin:
 
   `awk 'NR==1 {print}' test1.txt`   
-     ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/awk5.png)
+     ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/awk5.png)
 
 
 

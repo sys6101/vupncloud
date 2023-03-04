@@ -13,9 +13,10 @@ Trong Linux, Redirect Input và Output và Piping Data giữa các Programs là 
 
 - Redirect Input: Sử dụng ký tự "`<`" để chuyển hướng dữ liệu đầu vào từ một tệp hoặc từ một chương trình khác. Ví dụ: `command < input.txt` sẽ đọc dữ liệu từ tệp `input.txt`à đưa nó vào chương trình command.
 
-- Redirect Output: Sử dụng ký tự "`>`" để chuyển hướng dữ liệu đầu ra đến một tệp hoặc một chương trình khác. Ví dụ: `command > output.txt` sẽ ghi đầu ra của command vào tệp `output.txt`.
-
+- Redirect Output: Sử dụng ký tự "`>`" để chuyển hướng dữ liệu đầu ra đến một tệp hoặc một chương trình khác. Ví dụ: `command > output.txt` sẽ ghi đầu ra của command vào tệp `output.txt`.     
+![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/redirect1.png)
 2. Piping Data:
 - Piping Data giữa các Programs: Sử dụng ký tự "`|`" để chuyển tiếp dữ liệu đầu ra của một chương trình thành đầu vào của một chương trình khác. Ví dụ: `command1 | command2` sẽ lấy đầu ra của `command1` và chuyển tiếp nó làm đầu vào cho `command2`.    
 
-Các kỹ thuật này thường được sử dụng để xử lý dữ liệu trên command line. Ví dụ, nếu muốn đếm số từ trong một tệp văn bản, ta có thể sử dụng lệnh `wc -w filename.txt` để đếm số từ trong tệp `filename.txt`. Ta cũng có thể sử dụng Piping Data để chuyển đầu ra của lệnh cat (đọc nội dung tệp) thành đầu vào cho lệnh `wc` để đếm số từ của tệp đó, như sau: `cat filename.txt | wc -w`
+Các kỹ thuật này thường được sử dụng để xử lý dữ liệu trên command line. Ví dụ, nếu muốn đếm số từ trong một tệp văn bản, ta có thể sử dụng lệnh `wc -w filename.txt` để đếm số từ trong tệp `filename.txt`. Ta cũng có thể sử dụng Piping Data để chuyển đầu ra của lệnh cat (đọc nội dung tệp) thành đầu vào cho lệnh `wc` để đếm số từ của tệp đó, như sau: `cat filename.txt | wc -w`       
+![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/redirect2.png)

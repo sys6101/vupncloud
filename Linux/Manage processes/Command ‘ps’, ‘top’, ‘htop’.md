@@ -27,6 +27,19 @@ Trong đó:
   - `PID`: `ID` của tiến trình.
   - `TTY`: Đại diện cho Terminal Type
   - `TIME+`: Tổng thời gian `CPU` đã sử dụng bởi tiến trình đó.
-  - `CMD`: Tên của tiến trình.
+  - `CMD`: Tên của tiến trình.   
+
+  Các option của `ps` 
+
+  - `-e`: Liệt kê tất cả các tiến trình, không chỉ các tiến trình của người dùng hiện tại.  
+  ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps1.png) 
+  - `-f`: Hiển thị đầy đủ các thông tin về tiến trình, bao gồm cả UID, GID, PPID, C và STIME. 
+   ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps2.png) 
+  - `-u`: Liệt kê các tiến trình của một người dùng cụ thể, được chỉ định bởi tên người dùng hoặc UID.  
+   ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps3.png) 
+  - `-p`: Liệt kê thông tin về các tiến trình có PID được chỉ định. 
+ ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps4.png) 
+  `-a`: Hiển thị các tiến trình đang chạy trên tất cả các bảng điều khiển (terminal) hiện tại của người dùng. 
+   ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps5.png)
 
 - Lệnh `kill`: Kết thúc một tiến trình cụ thể bằng cách sử dụng ID tiến trình hoặc tên tiến trình.
