@@ -40,6 +40,6 @@ Trong đó:
   - `-p`: Liệt kê thông tin về các tiến trình có PID được chỉ định. 
  ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps4.png) 
   `-a`: Hiển thị các tiến trình đang chạy trên tất cả các bảng điều khiển (terminal) hiện tại của người dùng. 
-   ![](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps5.png)
+   ![ps5](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/ps5.png)
 
 - Lệnh `kill`: Kết thúc một tiến trình cụ thể bằng cách sử dụng ID tiến trình hoặc tên tiến trình.
