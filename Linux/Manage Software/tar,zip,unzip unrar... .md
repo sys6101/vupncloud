@@ -1,6 +1,6 @@
-Nén và giải nén 
+# Nén và giải nén 
 
-1."tar"    
+## 1."tar"    
 
 
 Nén các tệp tin thành một tệp tin tar:      
@@ -15,21 +15,21 @@ Nén và gzip tệp tin thành một tệp tin tar.gz:
 Giải nén một tệp tin tar.gz:
 
 `tar -xzvf ten_file.tar.gz`     
-2. "zip"    
+## 2. "zip"    
 Nén các tệp tin thành một tệp tin zip:
 
 `zip ten_file.zip ten_tep_tin`  
 Giải nén một tệp tin zip:
 
 `unzip ten_file.zip`    
-3. "unrar"  
+## 3. "unrar"  
 Nén các tệp tin thành một tệp tin rar:
 
 `rar a ten_file.rar ten_tep_tin`    
 Giải nén một tệp tin rar:
 
 `rar x ten_file.rar`    
-4. "gzip" và "gunzip"   
+## 4. "gzip" và "gunzip"   
 Nén một tệp tin:
 
 `gzip ten_tep_tin`  
