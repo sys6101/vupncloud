@@ -1,8 +1,13 @@
 Nén và giải nén 
-1. "tar"    
-Nén các tệp tin thành một tệp tin tar:    
-`tar -cvf ten_file.tar ten_tep_tin `  
-Giải nén một tệp tin tar: 
+
+1."tar"    
+
+
+Nén các tệp tin thành một tệp tin tar:      
+
+`tar -cvf ten_file.tar ten_tep_tin `      
+Giải nén một tệp tin tar:   
+
 `tar -xvf ten_file.tar`     
 Nén và gzip tệp tin thành một tệp tin tar.gz:
 
