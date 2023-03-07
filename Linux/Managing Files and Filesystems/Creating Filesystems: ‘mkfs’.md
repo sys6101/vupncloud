@@ -7,8 +7,6 @@ Cú pháp của lệnh `mkfs` như sau:
 `mkfs.[loại_hệ_thống_tệp] [tùy_chọn] [đường_dẫn_đến_phân_vùng]`       
 Ví dụ, để tạo một hệ thống tệp ext4 trên phân vùng /dev/sdb1, bạn có thể sử dụng lệnh sau:
 
-
-
 `sudo mkfs.ext4 /dev/sdb1`    
 Các tùy chọn thường được sử dụng với lệnh `mkfs` bao gồm:
 
