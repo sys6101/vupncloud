@@ -2,7 +2,8 @@ LVM (Logical Volume Manager) là một công cụ quản lý không gian đĩa l
 
 Lưu ý: Trước khi thực hiện bất kỳ thao tác nào trên LVM, hãy đảm bảo sao lưu toàn bộ dữ liệu trên các phân vùng liên quan để tránh mất dữ liệu.
 
-**Tạo Physical Volume (PV)**    
+**Tạo Physical Volume (PV)** 
+   
 Physical Volume là một phân vùng trên một hoặc nhiều ổ đĩa được sử dụng bởi LVM. Để tạo một Physical Volume, ta sẽ sử dụng lệnh pvcreate với đối số là đường dẫn tới ổ đĩa cần tạo.
 
 Ví dụ, để tạo một Physical Volume trên ổ đĩa /dev/sdb, ta sử dụng lệnh sau:

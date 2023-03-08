@@ -31,4 +31,4 @@ sudo umount /mnt
 ``` 
 
 Lưu ý rằng khi một phân vùng đang được sử dụng (chẳng hạn như đang được chạy một hệ thống tệp), bạn không thể unmount phân vùng đó.         
-Để unmount phân vùng đó, bạn cần phải dừng các tiến trình liên quan đến phân vùng đó trước khi thực hiện lệnh `umount`. Nếu bạn không dừng các tiến trình này, bạn có thể gây ra các lỗi hệ thống và dữ liệu có thể bị mất hoặc bị hỏng.
+Để umount phân vùng đó, bạn cần phải dừng các tiến trình liên quan đến phân vùng đó trước khi thực hiện lệnh `umount`. Nếu bạn không dừng các tiến trình này, bạn có thể gây ra các lỗi hệ thống và dữ liệu có thể bị mất hoặc bị hỏng.
