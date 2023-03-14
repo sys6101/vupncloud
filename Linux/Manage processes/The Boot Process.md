@@ -34,4 +34,4 @@ Runlevel là một chế độ hoạt động cụ thể của hệ thống. M�
 
 7. Login
 
-Sau khi quá trình khởi động hoàn tât người dùng được yêu cầu đăng nhập vào hệ thống. Người dùng sẽ được cung cấp một tên người dùng và mật khẩu để truy cập vào hệ thống. Sau khi đăng nhập thnahf công thì người dùng có thể sử dụng các ứng dụng và dịch vụ trên hệ thống.
+Sau khi quá trình khởi động hoàn tât người dùng được yêu cầu đăng nhập vào hệ thống. Người dùng sẽ được cung cấp một tên người dùng và mật khẩu để truy cập vào hệ thống. Sau khi đăng nhập thành công thì người dùng có thể sử dụng các ứng dụng và dịch vụ trên hệ thống.
