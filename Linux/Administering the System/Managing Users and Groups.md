@@ -39,5 +39,5 @@ Sử dụng visudo để chỉnh sửa file /etc/sudoers:
 ```
 sudo visudo
 ```
-v..v..v..v..v..
 ----------------------------
+v..v..v..v..v..
