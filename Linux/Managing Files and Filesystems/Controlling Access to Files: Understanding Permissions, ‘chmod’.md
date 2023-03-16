@@ -25,6 +25,7 @@
 - g (group) : biểu thị nhóm sở hữu của tệp tin hoặc thư mục.
 - o (others) : biểu thị người dùng khác.
 - a (all) : biểu thị tất cả các đối tượng trên (bao gồm u, g và o).
+- đọc (r), ghi (w) và thực thi (x)
 
 ```
 chmod u=rwx,g=rx,o= /path/to/file

@@ -18,7 +18,7 @@ Vd: `grep cloud test.txt` sẽ tìm kiếm từ `cloud` trong tệp `test.txt`
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep6.png)
 - `-w` chỉ in dòng có đúng từ khoá
   - `grep -w 'test' test.txt` sẽ chỉ tìm theo đúng từ _test_ chứ không có _tester..._   
-  ![Alt](h ttps://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep7.png)
+  ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Linux/grep7.png)
 
 
 - `--color` tô màu từ khoá trong kết quả
@@ -109,13 +109,13 @@ Lệnh `awk` là một công cụ xử lý văn bản mạnh mẽ trên hệ đi
 
 ex: 
 abc1,457,xyz
- cat cái file này ra như dưới
-1
-2
-3
-4
-5
-6
+ cat cái file này ra như dưới   
+1   
+2   
+3   
+4   
+5   
+6   
 
 ```
 vupn@vupn:~/testcommand$ cat test.txt  | awk -F ',' '{print $2}' | sed 's/7/6/' | fold -w 1
