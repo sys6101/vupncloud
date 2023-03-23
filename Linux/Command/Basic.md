@@ -45,7 +45,7 @@ Có thể sử dụng lệnh `rm` mà không sử dụng tùy chọn `-r`. Trong
 Vì vậy, nếu bạn muốn xóa một tệp tin duy nhất, bạn có thể sử dụng lệnh `rm <tên tệp>` để xóa tệp đó. Tuy nhiên, nếu bạn muốn xóa một thư mục và tất cả các tệp tin và thư mục con của nó, bạn cần sử dụng tùy chọn `-r` để xóa đệ quy toàn bộ cây thư mục con.  
 
 9. `touch`  
-Lệnh `touch` cho phép bạn tạo một tệ mới trống thông qua dòng lệnh  
+Lệnh `touch` cho phép bạn tạo một tệp mới trống thông qua dòng lệnh  
 Vd: `touch /home/test.py` để tạo tệp python     
 
 10. `locate`    

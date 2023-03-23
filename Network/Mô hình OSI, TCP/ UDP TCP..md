@@ -1,3 +1,4 @@
+# UDP and TCP
 UDP (User Datagram Protocol) và TCP (Transmission Control Protocol) là hai giao thức truyền tải dữ liệu quan trọng trong mô hình TCP/IP. Dưới đây là sự khác biệt giữa UDP và TCP:
 
 - Độ tin cậy: TCP cung cấp độ tin cậy khi truyền tải dữ liệu bằng cách đảm bảo rằng tất cả các gói tin được gửi đến đích và đúng thứ tự. UDP không cung cấp độ tin cậy và có thể gửi các gói tin mất mát hoặc trùng lặp.

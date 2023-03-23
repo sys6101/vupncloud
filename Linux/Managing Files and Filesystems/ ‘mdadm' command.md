@@ -8,7 +8,6 @@ Kiểm tra các ổ đĩa có sẵn trong hệ thống của bạn bằng lệnh
 ```
 sudo fdisk -l
 ```
-Tạo một mảng RAID bằng lệnh sau:
 
 ```
 sudo mdadm --create /dev/md0 --level=<RAID level> --raid-devices=<number of disks> /dev/sd[a,b,c,..]    
