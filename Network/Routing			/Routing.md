@@ -9,3 +9,24 @@ Trong định tuyến tĩnh, bảng định tuyến được cấu hình bằng 
 Một ưu điểm của định tuyến tĩnh là tính đơn giản và độ tin cậy cao. Tuy nhiên, khi mạng có nhiều router và địa chỉ mạng, việc cấu hình bảng định tuyến trở nên phức tạp và dễ gây sai sót.
 
 Ngoài định tuyến tĩnh, còn có định tuyến động được sử dụng trong mạng máy tính. Định tuyến động cho phép các router tự động xác định đường đi tốt nhất để chuyển tiếp gói dữ liệu đến đích. Định tuyến động được thực hiện bằng cách sử dụng các giao thức định tuyến động như OSPF, RIP, BGP, EIGRP, và IS-IS.
+
+
+# Routing table, cấu hình định tuyến trên Linux	
+
+Routing table (bảng định tuyến) là một bảng dữ liệu được lưu trữ trong một thiết bị mạng (như router hoặc switch) để quản lý các đường đi mạng và chỉ định các giao thức định tuyến để sử dụng cho việc gửi và nhận các gói tin trên mạng.
+
+Bảng định tuyến bao gồm các thông tin về các địa chỉ mạng, các thiết bị mạng kết nối với mạng, các giao thức định tuyến và các đường đi mạng. Khi một thiết bị mạng nhận được một gói tin, nó sẽ sử dụng bảng định tuyến để tìm kiếm đường đi phù hợp nhất để gửi gói tin đó tới đích.
+
+Bảng định tuyến được sử dụng để tối ưu hóa quá trình định tuyến, giúp giảm độ trễ mạng, tăng tốc độ truyền dữ liệu và giảm khả năng xảy ra lỗi trong quá trình gửi và nhận gói tin trên mạng.
+
+Một số giao thức định tuyến phổ biến được sử dụng để cập nhật bảng định tuyến, bao gồm: RIP (Routing Information Protocol), OSPF (Open Shortest Path First), BGP (Border Gateway Protocol) và EIGRP (Enhanced Interior Gateway Routing Protocol). Các giao thức này cung cấp các cơ chế để truyền tải thông tin định tuyến và cập nhật bảng định tuyến trên các thiết bị mạng.
+
+
+Cấu hình định tuyến: 
+
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/route1.png)
+
+Routing table
+
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/route2.png)
+
