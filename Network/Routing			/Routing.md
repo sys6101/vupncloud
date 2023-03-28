@@ -1,6 +1,6 @@
 # Giao thức định tuyến
 
-iao thức định tuyến là một phần quan trọng của mạng máy tính, nó giúp định tuyến dữ liệu từ nguồn đến đích trong mạng. Định tuyến tĩnh là một trong những loại định tuyến được sử dụng trong mạng máy tính, trong đó định tuyến được thực hiện bằng cách cấu hình bằng tay các bảng định tuyến trên các router.
+Giao thức định tuyến là một phần quan trọng của mạng máy tính, nó giúp định tuyến dữ liệu từ nguồn đến đích trong mạng. Định tuyến tĩnh là một trong những loại định tuyến được sử dụng trong mạng máy tính, trong đó định tuyến được thực hiện bằng cách cấu hình bằng tay các bảng định tuyến trên các router.
 
 Khi một gói dữ liệu được gửi từ một nguồn đến một đích trong mạng, nó phải đi qua nhiều router trước khi đến được đích. Mỗi router phải quyết định đường đi tốt nhất để chuyển tiếp gói dữ liệu đến router tiếp theo trong đường truyền. Để đảm bảo đường truyền tối ưu, các router cần phải biết về cấu trúc mạng và thông tin định tuyến.
 
