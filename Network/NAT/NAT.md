@@ -1,0 +1,14 @@
+# NAT
+NAT là viết tắt của Network Address Translation, là một kỹ thuật được sử dụng để chuyển đổi địa chỉ IP giữa các mạng khác nhau. NAT được sử dụng rộng rãi để kết nối các mạng LAN (Local Area Network) với Internet.
+
+Cơ chế NAT hoạt động bằng cách thay đổi địa chỉ IP nguồn hoặc đích của gói tin IP trong khi gói tin đó được truyền qua bộ định tuyến (router). Việc thay đổi địa chỉ IP giúp cho các thiết bị trên mạng LAN có thể kết nối với Internet sử dụng một địa chỉ IP duy nhất.
+
+Có ba loại NAT chính:
+
+Source NAT (SNAT): được sử dụng để thay đổi địa chỉ IP nguồn của gói tin. Khi gói tin đi từ mạng nội bộ đến Internet, địa chỉ IP nguồn của gói tin được thay đổi để trở thành địa chỉ IP của router hoặc gateway của mạng LAN. SNAT thường được sử dụng để giúp các máy tính trong mạng LAN có thể kết nối với Internet sử dụng cùng một địa chỉ IP bên ngoài.
+- Để giải quyết vấn đề này, NAT được sử dụng để thay đổi địa chỉ IP của gói tin IP khi nó đi qua bộ định tuyến. Trong trường hợp của Source NAT (SNAT), địa chỉ IP nguồn của gói tin IP được thay đổi thành địa chỉ IP của bộ định tuyến. Địa chỉ IP đích của gói tin IP không thay đổi và vẫn là địa chỉ IP của máy tính trên Internet. Khi máy tính trên Internet nhận được gói tin IP này, nó sẽ trả lời bằng một gói tin IP với địa chỉ IP đích là địa chỉ IP công cộng của bộ định tuyến. Bộ định tuyến sẽ tiếp tục thay đổi địa chỉ IP của gói tin IP này để nó trở lại địa chỉ IP của máy tính trong mạng LAN.
+
+Destination NAT (DNAT): được sử dụng để thay đổi địa chỉ IP đích của gói tin. Khi gói tin đi từ Internet đến mạng nội bộ, địa chỉ IP đích của gói tin được thay đổi để trở thành địa chỉ IP của một máy tính trong mạng LAN. DNAT thường được sử dụng để cho phép các dịch vụ trong mạng LAN (như máy chủ web hoặc máy chủ thư điện tử) có thể được truy cập từ Internet.
+- - Trong trường hợp của Destination NAT (DNAT), địa chỉ IP đích của gói tin IP được thay đổi thành địa chỉ IP của một máy tính trong mạng LAN. Địa chỉ IP nguồn của gói tin IP không thay đổi và vẫn là địa chỉ IP của máy tính trên Internet. Khi máy tính trong mạng LAN nhận được gói tin IP này, nó sẽ trả lời bằng một gói tin IP với địa chỉ IP nguồn là địa chỉ IP của máy tính trong mạng LAN và địa chỉ IP đích là địa chỉ IP công cộng của bộ định tuyến. Bộ định tuyến sẽ tiếp tục thay đổi địa chỉ IP của gói tin IP này để nó trở lại địa chỉ IP của máy tính trên Internet.  
+  
+Masquerade: là một dạng của SNAT, trong đó địa chỉ IP nguồn của gói tin được thay đổi thành địa chỉ IP của router hoặc gateway của mạng LAN. Masquerade được sử dụng trong các trường hợp mà địa chỉ IP bên trong mạng LAN thay đổi thường xuyên và không thể dễ dàng cấu hình cho SNAT.
