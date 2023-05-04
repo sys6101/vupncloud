@@ -56,11 +56,11 @@ Các tùy chọn trong Iptables được phân chia rõ ràng theo từng dạng
 
 Rule iptables:
 - chỉ allow 1 ip vào 1 port trên server
-- drop hết các access vào port nếu ko phải ip này   
+- drop hết các access vào port nếu ko phải ip này        
   ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables1.png)
-  
+    
 
-Kết nối từ IP được cấp phép:
-    ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables2.jpg)
-Kết nối từ IP không được cấp phép:
-    ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables3.jpg)
+Kết nối từ IP được cấp phép:        
+    ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables2.jpg)     
+Kết nối từ IP không được cấp phép:      
+    ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables3.jpg)     
