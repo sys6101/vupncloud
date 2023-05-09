@@ -64,3 +64,70 @@ Kết nối từ IP được cấp phép:
     ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables2.jpg)     
 Kết nối từ IP không được cấp phép:      
     ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables3.jpg)     
+
+  ### Cấp phát DHCP
+
+Đầu tiên cài đặt DCHP server: 
+```
+sudo apt install isc-dhcp-server
+sudo apt -y install netplan.io
+
+```
+
+Thay đổi IPv4 của interface ens37:
+ sudo vim /etc/netplan/00-installer-config.yaml. 
+
+'''
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens33:
+      dhcp4: true
+    ens37:
+      addresses: [192.168.10.2/24]
+      gateway4: 192.168.10.1
+      nameservers:
+        addresses:  [8.8.8.8]
+        search:
+        - vupn.me
+  version: 2
+
+'''
+Mở file cấu hình DHCP :
+```
+sudo vim /etc/dhcp/dhcpd.conf
+```
+
+Sưa
+```
+subnet 192.168.10.0  netmask 255.255.255.0 {
+  range 192.168.10.1 192.168.10.254;
+  option domain-name-servers 192.168.10.1;
+  option domain-name "lan";
+  option subnet-mask 255.255.255.0;
+  option routers 192.168.10.1;
+  option broadcast-address 192.168.10.255;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+
+```
+Gán IP theo một địa chỉ MAC nhất định:
+'''
+host vucl2 {
+    hardware ethernet 00:0c:29:18:a3:d8;
+    fixed-address 192.168.10.5;
+}
+
+'''
+Dùng sudo systemctl restart isc-dhcp-server để khởi động dịch vụ isc-dhcp-server
+
+Dùng sudo systemctl enable isc-dhcp-server để bật dịch vụ isc-dhcp-server
+
+
+Dùng sudo iptables --table nat --append POSTROUTING -s 192.168.0.0/24 --out-interface ens33 --jump MASQUERADE để thêm rule NAT
+lệnh này thiết lập NAT trên máy tính Linux để cho phép các thiết bị trong mạng 192.168.0.0/24 truy cập Internet thông qua giao diện mạng ens33
+Lưu cài đặt đã thay đổi với iptables: sudo iptables-save
+
+
