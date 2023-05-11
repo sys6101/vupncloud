@@ -66,7 +66,7 @@ Kết nối từ IP không được cấp phép:
     ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables3.jpg)     
 
   ### Cấp phát DHCP
-
+#### Phía server
 Đầu tiên cài đặt DCHP server: 
 ```
 sudo apt install isc-dhcp-server
@@ -77,22 +77,20 @@ sudo apt -y install netplan.io
 Thay đổi IPv4 của interface ens37:
  sudo vim /etc/netplan/00-installer-config.yaml. 
 
-'''
-# This is the network config written by 'subiquity'
-network:
-  ethernets:
-    ens33:
-      dhcp4: true
-    ens37:
-      addresses: [192.168.10.2/24]
-      gateway4: 192.168.10.1
-      nameservers:
-        addresses:  [8.8.8.8]
-        search:
-        - vupn.me
-  version: 2
-
-'''
+```
+network:  
+  ethernets:  
+    ens33:  
+      dhcp4: true 
+    ens37:  
+      addresses: [192.168.10.2/24]  
+      gateway4: 192.168.10.1  
+      nameservers:  
+        addresses:  [8.8.8.8] 
+        search: 
+        - vupn.me 
+  version: 2  
+```
 Mở file cấu hình DHCP :
 ```
 sudo vim /etc/dhcp/dhcpd.conf
@@ -114,16 +112,23 @@ subnet 192.168.10.0  netmask 255.255.255.0 {
 
 ```
 Gán IP theo một địa chỉ MAC nhất định:
-'''
+```
 host vucl2 {
     hardware ethernet 00:0c:29:18:a3:d8;
     fixed-address 192.168.10.5;
 }
 
-'''
-Dùng sudo systemctl restart isc-dhcp-server để khởi động dịch vụ isc-dhcp-server
+```
+#### Phía client
 
-Dùng sudo systemctl enable isc-dhcp-server để bật dịch vụ isc-dhcp-server
+Đặt các interface của client theo IP động DHCP, và kết quả cuối cùng:   
+Client fix_address  
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables2.png)
+Client không fix_address  
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables3.png)
+Dùng sudo systemctl restart isc-dhcp-server để khởi động dịch vụ isc-dhcp-server  
+
+Dùng sudo systemctl enable isc-dhcp-server để bật dịch vụ isc-dhcp-server 
 
 
 Dùng sudo iptables --table nat --append POSTROUTING -s 192.168.0.0/24 --out-interface ens33 --jump MASQUERADE để thêm rule NAT
