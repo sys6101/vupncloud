@@ -122,9 +122,9 @@ host vucl2 {
 #### Phía client
 
 Đặt các interface của client theo IP động DHCP, và kết quả cuối cùng:   
-Client fix_address  
+Client fixed_address  
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables2.png)
-Client không fix_address  
+Client không fixed_address  
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/iptables3.png)
 Dùng sudo systemctl restart isc-dhcp-server để khởi động dịch vụ isc-dhcp-server  
 
