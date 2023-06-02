@@ -69,3 +69,8 @@ Có thể thấy card bond0 sẽ có flag 'MASTER' và 2 card eth1 và eth2 có 
 
 ![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/b4.png) 
 
+
+VLAN
+
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/bondvlan.png) 
+
