@@ -1,4 +1,4 @@
-![Screenshot from 2023-03-23 17-08-29](https://user-images.githubusercontent.com/54473576/227170721-d767fd6d-00e2-4783-ae48-e9d094df9ca8.png)
+![Alt](https://github.com/sys6101/vupncloud/raw/main/Picture/Network/dnss.png)  
 # Trên máy gateway:
 
 ## Thay đổi IPv4 của interface ens37 
