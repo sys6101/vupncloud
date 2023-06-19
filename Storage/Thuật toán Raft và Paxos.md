@@ -11,8 +11,19 @@ Thuật toán Raft dựa trên ý tưởng của một nhóm các máy chủ đ�
 ### Election (Bầu cử):
 
 Mỗi người đồng đảng có một thời gian chờ ngẫu nhiên và trong thời gian này, nếu không nhận được tin nhắn từ leader, họ sẽ tự xem mình là ứng cử viên (candidate) và bắt đầu quá trình bầu cử.
+
 Ứng cử viên gửi các yêu cầu bầu cử đến các người đồng đảng khác và nếu nhận được đa số phiếu ủng hộ, ứng cử viên sẽ trở thành leader.
+
 Nếu một người đồng đảng nhận được yêu cầu bầu cử từ ứng cử viên, họ sẽ phản hồi với phiếu ủng hộ và chấp nhận ứng cử viên làm leader.
+
+Trong thuật toán Raft, quá trình bầu cử trưởng nhóm (leader election) sẽ diễn ra như sau trong trường hợp cluster có 3 thành viên:
+
+- Mỗi thành viên sẽ tự đề cử mình làm trưởng nhóm (leader) bằng cách gửi yêu cầu bầu cử (election request) đến các thành viên khác trong cluster.
+- Khi một thành viên nhận được yêu cầu bầu cử, nó sẽ kiểm tra xem nếu nó chưa bầu cử cho ai hoặc nếu nó đã bầu cử cho một thành viên nào đó mà không thành công (ví dụ như không nhận được phản hồi), nó sẽ đồng ý bầu cử cho thành viên mới đề cử.
+- Khi một thành viên nhận được đủ số phiếu bầu (quorum) từ các thành viên khác trong cluster, nó sẽ trở thành trưởng nhóm và gửi thông báo bầu cử thành công (election success) đến các thành viên khác trong cluster.
+Các thành viên khác sẽ nhận được thông báo này và chuyển sang chế độ đồng bộ hóa với trưởng nhóm mới.       
+
+Trong trường hợp cluster có 3 thành viên, để đảm bảo tính nhất quán, cần có ít nhất 2 phiếu bầu (quorum) để đưa ra quyết định cho một hoạt động. Do đó, để bầu cử thành công, cần có ít nhất 2 thành viên đồng ý bầu cử cho cùng một thành viên đề cử. Nếu chỉ có 1 hoặc không có thành viên nào đồng ý bầu cử cho cùng một thành viên đề cử, quá trình bầu cử sẽ không thành công và quá trình bầu cử sẽ được lặp lại.
 ### Leader Operation (Hoạt động của leader):
 
 Leader nhận yêu cầu từ khách hàng và phân phối các yêu cầu cho các người đồng đảng.
