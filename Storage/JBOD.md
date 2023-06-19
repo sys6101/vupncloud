@@ -88,8 +88,8 @@ Gắn JBOD vào hệ thống tập tin. Tạo một thư mục trên hệ thốn
 
 
 
-`sudo mount /dev/md0 /path/to/mount`    
-Thay /dev/md0 bằng đường dẫn của JBOD và /path/to/mount bằng đường dẫn đến thư mục mà bạn muốn gắn JBOD.
+`sudo mount /dev/md0 //media/cl1`    
+Thay /dev/md0 bằng đường dẫn của JBOD và /media/cl1 bằng đường dẫn đến thư mục mà bạn muốn gắn JBOD.
 
 
 Kiểm tra JBOD đã được gắn kết thành công bằng lệnh:
