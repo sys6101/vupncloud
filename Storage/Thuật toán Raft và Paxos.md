@@ -38,6 +38,27 @@ Raft đảm bảo tính nhất quán bằng cách đảm bảo rằng một yêu
 Raft sử dụng cơ chế đồng thuận để đảm bảo rằng một yêu cầu sẽ không bị mất và sẽ không bị xung đột.     
 
 Thuật toán Raft thiết kế một giao thức đồng thuận đơn giản, dễ hiểu và dễ triển khai. Nó cung cấp tính nhất quán và độ tin cậy trong hệ thống phân tán, giúp giảm thiểu sự cố và tăng tính sẵn sàng.
+
+Giả sử bạn có một cluster Raft với 3 node A, B và C, trong đó node A là leader. Khi một node bị down, quá trình được mô phỏng như sau:
+
+Node A sẽ gửi các entries mới nhất đến node B và C, để đảm bảo rằng các node này có dữ liệu mới nhất. 
+
+![Alt text](image.png)      
+Nếu node A bị down, node B và C sẽ bắt đầu bầu cử (election) để chọn ra một leader mới. Các node sẽ gửi các yêu cầu bầu cử (request for votes) đến các node khác trong cluster.
+
+![Alt text](image-1.png)
+
+Nếu một node nhận được đa số phiếu (quá nửa số node trong cluster), nó sẽ trở thành leader mới. Nếu không, các node sẽ tiếp tục gửi yêu cầu bầu cử cho đến khi có leader mới được chọn.
+
+Khi một leader mới được chọn, các node khác sẽ yêu cầu leader mới nhận các entries mới nhất từ node trước đó đến thời điểm hiện tại.
+
+Leader mới sẽ gửi các entries mới nhất đến các node khác trong cluster để đồng bộ hóa dữ liệu.
+
+Các node trong cluster sẽ kiểm tra xem trạng thái của chúng có phù hợp với trạng thái của leader mới không. Nếu không, chúng sẽ cập nhật trạng thái của mình để phù hợp với trạng thái của leader mới.
+
+Khi quá trình đồng bộ hoàn tất, cluster sẽ tiếp tục hoạt động với leader mới và các node khác như bình thường.
+
+Trong quá trình này, Raft đảm bảo rằng các entries mới nhất được sao chép đến các node khác trong cluster và leader mới được chọn một cách an toàn và đáng tin cậy.
 # Thuật toán Paxos
 
 ## Giới thiệu
@@ -70,6 +91,18 @@ Accepted (Giai đoạn đã chấp nhận): Acceptors nhận tin nhắn "accept"
 Paxos đảm bảo tính nhất quán bằng cách đảm bảo rằng chỉ có một giá trị duy nhất được chấp nhận và đồng thuận trong mỗi giai đoạn.           
 
 Thuật toán Paxos phức tạp trong việc triển khai và hiểu đối với người mới, nhưng nó cung cấp tính nhất quán và độ tin cậy trong môi trường phân tán. Nó đã được sử dụng rộng rãi trong các hệ thống phân tán như các hệ thống cơ sở dữ liệu phân tán và hệ thống điều phối tài nguyên.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
