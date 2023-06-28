@@ -72,11 +72,11 @@ Thuật toán Paxos là một thuật toán đồng thuận phân phối đượ
 
 ### Roles (Vai trò):
 
-Proposer (Người đề xuất): Người đề xuất một giá trị để đồng thuận.
+Proposer: Người đề xuất một giá trị để đồng thuận.
 
-Acceptor (Người chấp nhận): Người nhận và xử lý các đề xuất từ proposer.
+Acceptor: Người nhận và xử lý các đề xuất từ proposer.
 
-Learner (Người học): Người nhận thông tin về giá trị đã được đồng thuận.
+Learner: Người nhận thông tin về giá trị đã được đồng thuận.
 ### Phases (Các giai đoạn):
 
 Prepare (Giai đoạn chuẩn bị): Proposer gửi một tin nhắn "prepare" chứa một số tiền đề (ballot number) đến tất cả các acceptor. Acceptors sẽ kiểm tra số tiền đề và trả về thông tin về các giá trị đã chấp nhận trước đó (nếu có).
@@ -93,14 +93,25 @@ Paxos đảm bảo tính nhất quán bằng cách đảm bảo rằng chỉ có
 Thuật toán Paxos phức tạp trong việc triển khai và hiểu đối với người mới, nhưng nó cung cấp tính nhất quán và độ tin cậy trong môi trường phân tán. Nó đã được sử dụng rộng rãi trong các hệ thống phân tán như các hệ thống cơ sở dữ liệu phân tán và hệ thống điều phối tài nguyên.
 
 
+Trong hệ thống phân tán Paxos, nếu một server bị down, các phase sẽ hoạt động như sau:
+
+- Trong phase "prepare": Nếu server bị down là một acceptor, nó sẽ không thể gửi thông điệp "promise" cho proposer, và proposer sẽ không nhận được đủ số lượng thông điệp "promise" để tiếp tục đề xuất. Tuy nhiên, nếu server bị down là một proposer, các acceptor vẫn có thể gửi thông điệp "promise" và thuật toán vẫn có thể tiếp tục hoạt động.
+
+- Trong phase "accept": Nếu server bị down là một acceptor, nó sẽ không thể gửi thông điệp "accepted" để thông báo rằng giá trị đề xuất đã được chấp nhận. Tuy nhiên, các acceptor khác vẫn có thể gửi thông điệp "accepted" và proposer sẽ tiếp tục tiến hành các bước để đồng bộ hóa giá trị đề xuất.
+
+- Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. Tuy nhiên, nếu server bị down là một phần quan trọng của hệ thống, có thể dẫn đến việc xử lý giá trị đề xuất không hoạt động đúng cách hoặc gây ra tình trạng không đồng bộ trong hệ thống.
 
 
+![Alt text](image-2.png)            
 
+[1] Proposer gửi một thông điệp "prepare" với một số nhận dạng duy nhất (n).  
 
+[2] Mỗi acceptor kiểm tra xem nếu n lớn hơn hoặc bằng số phiên bản lớn nhất mà nó đã đồng ý trước đó (vn), nó sẽ gửi một thông điệp "promise" cho proposer, bao gồm số phiên bản lớn nhất mà nó đã đồng ý trước đó.    
 
+[3] Nếu proposer nhận được đủ số lượng thông điệp "promise" từ các acceptor, nó sẽ gửi một thông điệp "accept" tới tất cả các acceptor, bao gồm nhận dạng duy nhất (n) và giá trị đề xuất (v).          
+[4] Mỗi acceptor sẽ kiểm tra xem giá trị đề xuất này chưa từ chối bởi bất kỳ acceptor nào khác, nếu chưa, nó sẽ gửi thông điệp "accepted" cho proposer, để thông báo rằng giá trị đề xuất đã được chấp nhận.       
 
-
-
+[5] Sau khi một giá trị đề xuất đã được chấp nhận bởi đủ số lượng acceptor giá trị đề xuất đã được chấp nhận và được áp dụng trên toàn bộ hệ thống.
 
 
 
