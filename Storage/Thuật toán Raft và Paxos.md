@@ -81,9 +81,9 @@ Learner (Người học): Người nhận thông tin về giá trị đã đư�
 
 Prepare (Giai đoạn chuẩn bị): Proposer gửi một tin nhắn "prepare" chứa một số tiền đề (ballot number) đến tất cả các acceptor. Acceptors sẽ kiểm tra số tiền đề và trả về thông tin về các giá trị đã chấp nhận trước đó (nếu có).
 
-Promise (Giai đoạn hứa): Acceptors phản hồi tin nhắn "promise" cho proposer với số tiền đề cao nhất mà họ đã nhận được và thông tin về giá trị đã chấp nhận trước đó (nếu có).
+Promise : Acceptors phản hồi tin nhắn "promise" cho proposer với số tiền đề cao nhất mà họ đã nhận được và thông tin về giá trị đã chấp nhận trước đó (nếu có).
 
-Accept (Giai đoạn chấp nhận): Nếu proposer nhận được đủ số lượng hứa từ acceptors và không có bất kỳ acceptor nào đã chấp nhận giá trị khác, proposer gửi một tin nhắn "accept" chứa giá trị mới đến tất cả các acceptors.      
+Accept (Giai đoạn chấp nhận): Nếu proposer nhận được đủ số lượng chứa từ acceptors và không có bất kỳ acceptor nào đã chấp nhận giá trị khác, proposer gửi một tin nhắn "accept" chứa giá trị mới đến tất cả các acceptors.      
 
 Accepted (Giai đoạn đã chấp nhận): Acceptors nhận tin nhắn "accept" từ proposer và gửi tin nhắn "accepted" đến tất cả các learners để thông báo về giá trị đã chấp nhận.
 ### Safety (An toàn):
