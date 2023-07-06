@@ -43,10 +43,10 @@ Giả sử bạn có một cluster Raft với 3 node A, B và C, trong đó node
 
 Node A sẽ gửi các entries mới nhất đến node B và C, để đảm bảo rằng các node này có dữ liệu mới nhất. 
 
-![Alt text](image.png)      
+![Alt text](/Picture/Storage/image.png)      
 Nếu node A bị down, node B và C sẽ bắt đầu bầu cử (election) để chọn ra một leader mới. Các node sẽ gửi các yêu cầu bầu cử (request for votes) đến các node khác trong cluster.
 
-![Alt text](image-1.png)
+![Alt text](/Picture/Storage/image-1.png)
 
 Nếu một node nhận được đa số phiếu (quá nửa số node trong cluster), nó sẽ trở thành leader mới. Nếu không, các node sẽ tiếp tục gửi yêu cầu bầu cử cho đến khi có leader mới được chọn.
 
@@ -102,12 +102,12 @@ Trong hệ thống phân tán Paxos, nếu một server bị down, các phase s�
 - Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. Tuy nhiên, nếu server bị down là một phần quan trọng của hệ thống, có thể dẫn đến việc xử lý giá trị đề xuất không hoạt động đúng cách hoặc gây ra tình trạng không đồng bộ trong hệ thống.
 
 
-![Alt text](image-2.png)            
+![Alt text](/Picture/Storage/image-2.png)            
 
 [1] Proposer gửi một thông điệp "prepare" với một số nhận dạng duy nhất (n).  
 
 [2] Mỗi acceptor kiểm tra xem nếu n lớn hơn hoặc bằng số phiên bản lớn nhất mà nó đã đồng ý trước đó (vn), nó sẽ gửi một thông điệp "promise" cho proposer, bao gồm số phiên bản lớn nhất mà nó đã đồng ý trước đó.    
-
+ 
 [3] Nếu proposer nhận được đủ số lượng thông điệp "promise" từ các acceptor, nó sẽ gửi một thông điệp "accept" tới tất cả các acceptor, bao gồm nhận dạng duy nhất (n) và giá trị đề xuất (v).          
 [4] Mỗi acceptor sẽ kiểm tra xem giá trị đề xuất này chưa từ chối bởi bất kỳ acceptor nào khác, nếu chưa, nó sẽ gửi thông điệp "accepted" cho proposer, để thông báo rằng giá trị đề xuất đã được chấp nhận.       
 

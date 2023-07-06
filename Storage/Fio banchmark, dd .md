@@ -1,0 +1,70 @@
+# Fio
+Fio (Flexible I/O Tester), một công cụ được sử dụng để đo lường hiệu suất I/O (đầu vào/đầu ra) của các thiết bị lưu trữ như ổ đĩa cứng hoặc ổ đĩa SSD. Dưới đây là giải thích các thông số trong đầu ra này:
+
+- Laying out IO file (1 file / 4096MiB): fio đang chuẩn bị tệp tin IO có kích thước 4096MiB để thực hiện các thao tác I/O trên tệp tin này.
+- Jobs: 1 (f=1): [m(1)][100.0%][r=8448KiB/s,w=2910KiB/s][r=2112,w=727 IOPS][eta 00m:00s]: fio đang thực hiện một công việc (job) với một tệp tin I/O (f=1). Công việc đang thực hiện ở 100% hiệu suất, đọc với tốc độ 8.448 KiB/s và ghi với tốc độ 2.910 KiB/s. Tốc độ đọc và ghi được tính theo đơn vị KiB/s và IOPS (I/O operations per second).
+- (groupid=0, jobs=1): err= 0: pid=5781: Thu Jun 29 10:18:43 2023: Thông tin về nhóm thực hiện công việc và thông tin thời gian bắt đầu công việc.
+- read: IOPS=2229, BW=8920KiB/s (9134kB/s)(3070MiB/352440msec): Tốc độ đọc được tính bằng cách đo số lần thực hiện các thao tác đọc trên đơn vị thời gian và tốc độ trung bình của các thao tác đọc trong đơn vị thời gian. Tốc độ đọc ở đây là 2.229 IOPS và 8920 KiB/s (9.134 kB/s). Thời gian thực hiện là 3.52440 giây và kích thước tệp đọc là 3.070 MiB.
+- write: IOPS=745, BW=2981KiB/s (3053kB/s)(1026MiB/352440msec); 0 zone resets: Tốc độ ghi được tính bằng cách đo số lần thực hiện các thao tác ghi trên đơn vị thời gian và tốc độ trung bình của các thao tác ghi trong đơn vị thời gian. Tốc độ ghi ở đây là 745 IOPS và 2981 KiB/s (3.053 kB/s). Thời gian thực hiện là 3.52440 giây và kích thước tệp ghi là 1.026 MiB.
+- cpu: Thông tin về sử dụng CPU cho quá trình I/O.
+- IO depths: Thông tin về độ sâu IO (IO depth) được sử dụng để thực hiện các thao tác I/O.
+- submit: Thông tin về số lượng các yêu cầu I/O được gửi đến thiết bị lưu trữ.
+- complete: Thông tin về số lượng các yêu cầu I/O hoàn thành trên thiết bị lưu trữ.
+- issued rwts: Tổng số yêu cầu I/O được gửi đến thiết bị lưu trữ và số lượng yêu cầu I/O bị rút ngắn hoặc bị bỏ qua.
+- latency: Thông tin về thời gian trễ (latency) của các yêu cầu I/O. Ở đây, thời gian trễ mục tiêu (target) và cửa sổ (window) được đặt là 0, và các yêu cầu I/O đượcxếp hạng theo phân vị 100.00%. Độ sâu IO được sử dụng là 64.
+
+- Run status group 0 (all jobs): Thông tin về hiệu suất chung của các công việc I/O được thực hiện.
+- Disk stats (read/write): Thông tin về số lượng yêu cầu I/O được gửi đến thiết bị lưu trữ và thời gian hoàn thành các yêu cầu I/O. Thông tin về số lượng yêu cầu I/O được gộp lại (merge) và số lượng ticks (thời gian xử lý) của thiết bị lưu trữ. Thông tin về số lượng yêu cầu I/O đang đợi trong hàng đợi (in_queue) và tỷ lệ sử dụng tài nguyên của thiết bị lưu trữ (util). Trong đầu ra này, tên thiết bị lưu trữ là "sda".
+
+
+
+```
+$ fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=vutest1 --filename=vutest1 --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75
+
+##OUTPUT
+
+vutest1: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=64
+fio-3.28
+Starting 1 process
+vutest1: Laying out IO file (1 file / 4096MiB)
+Jobs: 1 (f=1): [m(1)][99.8%][r=7751KiB/s,w=2678KiB/s][r=1937,w=669 IOPS][eta 00m:01s] 
+vutest1: (groupid=0, jobs=1): err= 0: pid=15344: Thu Jun 29 17:05:47 2023
+  read: IOPS=1628, BW=6514KiB/s (6671kB/s)(3070MiB/482580msec)
+   bw (  KiB/s): min=  200, max=12456, per=100.00%, avg=6519.97, stdev=3595.69, samples=963
+   iops        : min=   50, max= 3114, avg=1629.84, stdev=898.89, samples=963
+  write: IOPS=544, BW=2177KiB/s (2229kB/s)(1026MiB/482580msec); 0 zone resets
+   bw (  KiB/s): min=   56, max= 4296, per=100.00%, avg=2178.83, stdev=1210.42, samples=963
+   iops        : min=   14, max= 1074, avg=544.57, stdev=302.55, samples=963
+  cpu          : usr=2.42%, sys=7.35%, ctx=558649, majf=0, minf=9
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, >=64=0.0%
+     issued rwts: total=785920,262656,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=64
+
+Run status group 0 (all jobs):
+   READ: bw=6514KiB/s (6671kB/s), 6514KiB/s-6514KiB/s (6671kB/s-6671kB/s), io=3070MiB (3219MB), run=482580-482580msec
+  WRITE: bw=2177KiB/s (2229kB/s), 2177KiB/s-2177KiB/s (2229kB/s-2229kB/s), io=1026MiB (1076MB), run=482580-482580msec
+
+Disk stats (read/write):
+  sda: ios=783636/265685, merge=1271/3320, ticks=25452713/4759237, in_queue=30227332, util=99.87%
+
+```
+
+
+Trên là một câu lệnh trong hệ điều hành Linux sử dụng công cụ FIO (Flexible I/O Tester) để kiểm tra hiệu suất I/O của ổ đĩa.
+
+Cụ thể, câu lệnh trên đang yêu cầu FIO thực hiện các thao tác I/O random trên tệp tin "vutest1" với dung lượng 4GB, kích thước khối dữ liệu là 4KB (block size), với tỷ lệ đọc/ghi là 75/25 (rwmixread=75). Để tăng hiệu suất, FIO sử dụng các thủ tục I/O trực tiếp (direct=1) và sử dụng libaio làm engine I/O (ioengine=libaio). Đồng thời, để giảm độ chính xác về thời gian đo đạt, tùy chọn --gtod_reduce=1 sẽ được sử dụng.
+
+Chú thích các tham số:
+- randrepeat=1: Lặp lại các chu kỳ I/O với dữ liệu ngẫu nhiên.
+- ioengine=libaio: Sử dụng libaio làm engine I/O.
+- direct=1: Sử dụng thủ tục I/O trực tiếp.
+- gtod_reduce=1: Giảm độ chính xác về thời gian đo đạt.
+- name=vutest1: Đặt tên cho công việc kiểm tra là "vutest1".
+- filename=vutest1: Tên tệp tin sẽ được sử dụng để kiểm tra hiệu suất I/O.
+- bs=4k: Kích thước khối dữ liệu (block size) là 4KB.
+- iodepth=64: Số lượng thao tác I/O được sử dụng đồng thời.
+- size=4G: Dung lượng tệp tin được sử dụng để kiểm tra hiệu suất I/O là 4GB.
+- readwrite=randrw: Loại thao tác I/O sẽ được sử dụng, ở đây là random read write.
+- rwmixread=75: Tỷ lệ đọc/ghi là 75/25.
