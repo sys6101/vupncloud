@@ -102,7 +102,8 @@ Trong hệ thống phân tán Paxos, nếu một server bị down, các phase s�
 - Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. 
 
 
-![Alt text](/Picture/Storage/image-2.png)            
+![Alt text](/Picture/Storage/image-2.png)  
+![Alt text](image-2.png)          
 
 [1] Proposer gửi một thông điệp "prepare" với một số nhận dạng duy nhất (n).  
 
