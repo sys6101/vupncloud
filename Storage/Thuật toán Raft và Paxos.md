@@ -113,6 +113,18 @@ Trong hệ thống phân tán Paxos, nếu một server bị down, các phase s�
 
 [5] Sau khi một giá trị đề xuất đã được chấp nhận bởi đủ số lượng acceptor giá trị đề xuất đã được chấp nhận và được áp dụng trên toàn bộ hệ thống.
 
+###
+Trong Paxos và Raft, số lượng node được khuyến nghị nên là số lẻ (ví dụ: 3, 5, 7, 9) để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi tốt hơn. Điều này liên quan đến cách các giao thức phân tán này hoạt động.
+
+Trong Paxos, số lượng node được khuyến nghị nên là từ 3 đến 5. Trong một cluster Paxos với số lượng node là lẻ, khi một node gặp sự cố hoặc bị ngắt kết nối, các node còn lại vẫn có thể hoạt động để đạt được sự đồng bộ và đồng nhất. Trong trường hợp có số lượng node là chẵn, tình huống có thể xảy ra là hai nhóm node có số lượng bằng nhau không thể đạt được đồng thuận vì mỗi nhóm có số phiếu bình đẳng.
+
+Tương tự, trong Raft, số lượng node khuyến nghị cũng nên là số lẻ để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi tốt hơn. Với số lượng node lẻ, các quyết định có thể được đưa ra theo đa số. Ví dụ, trong một cluster Raft có 5 node, để đạt được đồng thuận, ít nhất 3 node phải đồng ý với quyết định đó.
+```
+3 node cluster can handle 1 node fail (the majority is 2 nodes).
+4 node cluster can handle 1 node fail (the majority is 3 nodes).
+5 node cluster can handle 2 node fail (the majority is 3 nodes).
+6 node cluster can handle 2 node fail (the majority is 4 nodes).
+```
 
 
 
