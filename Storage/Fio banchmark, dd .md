@@ -22,6 +22,7 @@ Fio (Flexible I/O Tester), một công cụ được sử dụng để đo lư�
 $ fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=vutest1 --filename=vutest1 --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75
 
 ##OUTPUT
+sudo fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=vu --filename=vutest1 --bs=8k --iodepth=100 --size=4G --readwrite=randrw --rwmixread=75
 
 vutest1: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=64
 fio-3.28
@@ -68,3 +69,50 @@ Chú thích các tham số:
 - size=4G: Dung lượng tệp tin được sử dụng để kiểm tra hiệu suất I/O là 4GB.
 - readwrite=randrw: Loại thao tác I/O sẽ được sử dụng, ở đây là random read write.
 - rwmixread=75: Tỷ lệ đọc/ghi là 75/25.
+
+
+Dưới đây là các thông số được đưa ra trong kết quả của câu lệnh FIO:
+
+- IOPS (Input/Output Operations Per Second): Được đưa ra cho thao tác đọc (read) và thao tác ghi (write) riêng biệt. 
+
+  + Thao tác đọc: IOPS=1628
+  + Thao tác ghi: IOPS=544
+
+- Throughput (tốc độ truyền dữ liệu): Được đưa ra cho thao tác đọc (read) và thao tác ghi (write) riêng biệt. 
+
+  + Thao tác đọc: BW=6514KiB/s (6671kB/s)(3070MiB/482580msec)
+  + Thao tác ghi: BW=2177KiB/s (2229kB/s)(1026MiB/482580msec)
+
+- Latency (độ trễ):
+
+- CPU utilization (tỉ lệ sử dụng CPU): Được đưa ra cho toàn bộ quá trình thực hiện kiểm tra hiệu suất I/O.
+
+  + Tỉ lệ sử dụng CPU: usr=2.42%, sys=7.35%, ctx=558649, majf=0, minf=9
+
+- Các thông số khác:
+
+  + IO depths: Chỉ ra tỉ lệ yêu cầu I/O được gửi với các độ sâu khác nhau. Ví dụ: 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+  + Latency: Chỉ ra độ trễ tối đa và độ sâu yêu cầu I/O. Ví dụ: target=0, window=0, percentile=100.00%, depth=64
+  + Disk stats: Chỉ ra các thông số thống kê cho các yêu cầu I/O trên ổ đĩa. Ví dụ: ios=783636/265685, merge=1271/3320, ticks=25452713/4759237, in_queue=30227332, util=99.87%
+# dd  
+```
+$ dd if=/dev/zero of=/tmp/output bs=8k count=10k; rm -f /tmp/output
+10240+0 records in
+10240+0 records out
+83886080 bytes (84 MB, 80 MiB) copied, 0.0749867 s, 1.1 GB/s
+```
+
+
+Lệnh `dd if=/dev/zero of=/tmp/output bs=8k count=10k; rm -f /tmp/output` tạo ra một tệp tin tên là `/tmp/output` và điền nó với các giá trị 0 bằng lệnh `dd`. `if` chỉ định tệp đầu vào, trong trường hợp này là `/dev/zero.`
+
+`bs=8k` thiết lập kích thước khối là 8 kilobytes và cờ count=10k thiết lập số lượng khối là 10,000, do đó tổng cộng 80 megabytes được ghi vào tệp.
+
+Lệnh rm xóa tệp `/tmp/output`.
+
+Thông báo đầu ra 
+```
+10240+0 records in
+10240+0 records out
+83886080 bytes (84 MB, 80 MiB) copied, 0.0749867 s, 1.1 GB/s
+```
+Cho biết rằng lệnh đã sao chép 84 megabytes dữ liệu trong 0,0749867 giây, với tốc độ đạt 1.1 gigabytes mỗi giây. Thông báo cũng cho thấy rằng có 10240+0 bản ghi được đọc và ghi, và kích thước tệp là 84 megabytes (hoặc 80 mebibytes).

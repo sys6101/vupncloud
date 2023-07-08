@@ -99,7 +99,7 @@ Trong hệ thống phân tán Paxos, nếu một server bị down, các phase s�
 
 - Trong phase "accept": Nếu server bị down là một acceptor, nó sẽ không thể gửi thông điệp "accepted" để thông báo rằng giá trị đề xuất đã được chấp nhận. Tuy nhiên, các acceptor khác vẫn có thể gửi thông điệp "accepted" và proposer sẽ tiếp tục tiến hành các bước để đồng bộ hóa giá trị đề xuất.
 
-- Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. Tuy nhiên, nếu server bị down là một phần quan trọng của hệ thống, có thể dẫn đến việc xử lý giá trị đề xuất không hoạt động đúng cách hoặc gây ra tình trạng không đồng bộ trong hệ thống.
+- Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. 
 
 
 ![Alt text](/Picture/Storage/image-2.png)            
