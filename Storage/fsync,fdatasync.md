@@ -1,5 +1,5 @@
 # Flushing strategies
-![Alt text](image-5.png)
+![Alt text](/Picture/Storage/image-5.png)
 fsync(): Hàm fsync() là lệnh gọi của hệ điều hành nhằm đảm bảo rằng tất cả dữ liệu đã sửa đổi và metadata được liên kết với tệp được đồng bộ hóa và ghi vào đĩa. Nó đảm bảo độ bền, nghĩa là khi lệnh gọi fsync() trả về, dữ liệu sẽ được lưu trữ an toàn trên đĩa. Tuy nhiên, fsync() có thể là một hoạt động tốn kém về mặt hiệu suất.      
   
 Ưu điểm:
