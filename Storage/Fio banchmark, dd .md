@@ -15,9 +15,44 @@ Fio (Flexible I/O Tester), một công cụ được sử dụng để đo lư�
 
 - Run status group 0 (all jobs): Thông tin về hiệu suất chung của các công việc I/O được thực hiện.
 - Disk stats (read/write): Thông tin về số lượng yêu cầu I/O được gửi đến thiết bị lưu trữ và thời gian hoàn thành các yêu cầu I/O. Thông tin về số lượng yêu cầu I/O được gộp lại (merge) và số lượng ticks (thời gian xử lý) của thiết bị lưu trữ. Thông tin về số lượng yêu cầu I/O đang đợi trong hàng đợi (in_queue) và tỷ lệ sử dụng tài nguyên của thiết bị lưu trữ (util). Trong đầu ra này, tên thiết bị lưu trữ là "sda".
+## Ví dụ về sequential
 
+```
+fiotest sudo fio --ioengine=sync --rw=write --bs=4k --numjobs=1 --size=1G --filename=testfile --name=mytest
+mytest: (g=0): rw=write, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=sync, iodepth=1
+fio-3.28
+Starting 1 process
+mytest: Laying out IO file (1 file / 1024MiB)
 
+mytest: (groupid=0, jobs=1): err= 0: pid=15267: Tue Jul 11 15:13:07 2023
+  write: IOPS=410k, BW=1600MiB/s (1678MB/s)(1024MiB/640msec); 0 zone resets
+    clat (nsec): min=1780, max=123801, avg=2219.61, stdev=1339.84
+     lat (nsec): min=1809, max=123896, avg=2251.64, stdev=1344.31
+    clat percentiles (nsec):
+     |  1.00th=[ 1816],  5.00th=[ 1848], 10.00th=[ 1864], 20.00th=[ 1864],
+     | 30.00th=[ 1880], 40.00th=[ 1896], 50.00th=[ 1928], 60.00th=[ 1976],
+     | 70.00th=[ 2064], 80.00th=[ 2224], 90.00th=[ 2896], 95.00th=[ 3216],
+     | 99.00th=[ 6240], 99.50th=[ 6880], 99.90th=[16320], 99.95th=[27520],
+     | 99.99th=[47360]
+   bw (  MiB/s): min= 1580, max= 1580, per=98.75%, avg=1580.05, stdev= 0.00, samples=1
+   iops        : min=404492, max=404492, avg=404492.00, stdev= 0.00, samples=1
+  lat (usec)   : 2=64.08%, 4=33.17%, 10=2.55%, 20=0.13%, 50=0.07%
+  lat (usec)   : 100=0.01%, 250=0.01%
+  cpu          : usr=24.26%, sys=75.27%, ctx=1, majf=0, minf=12
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,262144,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
 
+Run status group 0 (all jobs):
+  WRITE: bw=1600MiB/s (1678MB/s), 1600MiB/s-1600MiB/s (1678MB/s-1678MB/s), io=1024MiB (1074MB), run=640-640msec
+
+Disk stats (read/write):
+  sda: ios=0/1, merge=0/0, ticks=0/0, in_queue=0, util=0.54%
+
+```
+## Vi du về random
 ```
 $ fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=vutest1 --filename=vutest1 --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75
 
