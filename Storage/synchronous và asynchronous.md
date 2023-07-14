@@ -10,14 +10,18 @@ Asynchronous operation có thể giúp tăng tốc độ và hiệu suất của
 import asyncio
 import time
 
-async def count():
-    await asyncio.sleep(1)
+
+
+def countsyn():
+    time.sleep(1)      
 
 def synchronous():
-    asyncio.run(count())
-    asyncio.run(count())
-    asyncio.run(count())
-   
+    countsyn()
+    countsyn()
+    countsyn()    
+ 
+async def count():
+    await asyncio.sleep(1)
 
 async def asynchronous():
     task1 = asyncio.create_task(count())
