@@ -10,6 +10,8 @@ Thuật toán Raft dựa trên ý tưởng của một nhóm các máy chủ đ�
 
 ### Election (Bầu cử):
 
+![Alt text](image.png)
+
 Mỗi người đồng đảng có một thời gian chờ ngẫu nhiên và trong thời gian này, nếu không nhận được tin nhắn từ leader, họ sẽ tự xem mình là ứng cử viên (candidate) và bắt đầu quá trình bầu cử.
 
 Ứng cử viên gửi các yêu cầu bầu cử đến các người đồng đảng khác và nếu nhận được đa số phiếu ủng hộ, ứng cử viên sẽ trở thành leader.
@@ -29,7 +31,7 @@ Trong trường hợp cluster có 3 thành viên, để đảm bảo tính nhấ
 Leader nhận yêu cầu từ khách hàng và phân phối các yêu cầu cho các người đồng đảng.
 Leader gửi các tin nhắn heartbeats định kỳ cho các người đồng đảng để duy trì sự nhất quán và tránh bầu cử mới.
 ### Log Replication (Sao chép nhật ký):
-
+![Alt text](image-3.png)
 Mỗi yêu cầu được gửi bởi khách hàng được ghi vào log của leader.
 Leader phân phối log cho các người đồng đảng và đợi cho đến khi log được sao chép đến đa số các người đồng đảng trước khi áp dụng yêu cầu.
 ### Safety (An toàn):
@@ -41,18 +43,18 @@ Thuật toán Raft thiết kế một giao thức đồng thuận đơn giản, 
 
 Giả sử bạn có một cluster Raft với 3 node A, B và C, trong đó node A là leader. Khi một node bị down, quá trình được mô phỏng như sau:
 
-Node A sẽ gửi các entries mới nhất đến node B và C, để đảm bảo rằng các node này có dữ liệu mới nhất. 
+- Node A sẽ gửi các entries mới nhất đến node B và C, để đảm bảo rằng các node này có dữ liệu mới nhất. 
 
 ![Alt text](/Picture/Storage/image.png)      
-Nếu node A bị down, node B và C sẽ bắt đầu bầu cử (election) để chọn ra một leader mới. Các node sẽ gửi các yêu cầu bầu cử (request for votes) đến các node khác trong cluster.
+- Nếu node A bị down, node B và C sẽ bắt đầu bầu cử (election) để chọn ra một leader mới. Các node sẽ gửi các yêu cầu bầu cử (request for votes) đến các node khác trong cluster.
 
 ![Alt text](/Picture/Storage/image-1.png)
 
-Nếu một node nhận được đa số phiếu (quá nửa số node trong cluster), nó sẽ trở thành leader mới. Nếu không, các node sẽ tiếp tục gửi yêu cầu bầu cử cho đến khi có leader mới được chọn.
+- Nếu một node nhận được đa số phiếu (quá nửa số node trong cluster), nó sẽ trở thành leader mới. Nếu không, các node sẽ tiếp tục gửi yêu cầu bầu cử cho đến khi có leader mới được chọn.
 
-Khi một leader mới được chọn, các node khác sẽ yêu cầu leader mới nhận các entries mới nhất từ node trước đó đến thời điểm hiện tại.
+- Khi một leader mới được chọn, các node khác sẽ yêu cầu leader mới nhận các entries mới nhất từ node trước đó đến thời điểm hiện tại.
 
-Leader mới sẽ gửi các entries mới nhất đến các node khác trong cluster để đồng bộ hóa dữ liệu.
+- Leader mới sẽ gửi các entries mới nhất đến các node khác trong cluster để đồng bộ hóa dữ liệu.
 
 Các node trong cluster sẽ kiểm tra xem trạng thái của chúng có phù hợp với trạng thái của leader mới không. Nếu không, chúng sẽ cập nhật trạng thái của mình để phù hợp với trạng thái của leader mới.
 
@@ -72,20 +74,20 @@ Thuật toán Paxos là một thuật toán đồng thuận phân phối đượ
 
 ### Roles (Vai trò):
 
-Proposer: Người đề xuất một giá trị để đồng thuận.
+- Proposer: Người đề xuất một giá trị để đồng thuận.
 
-Acceptor: Người nhận và xử lý các đề xuất từ proposer.
+- Acceptor: Người nhận và xử lý các đề xuất từ proposer.
 
-Learner: Người nhận thông tin về giá trị đã được đồng thuận.
+- Learner: Người nhận thông tin về giá trị đã được đồng thuận.
 ### Phases (Các giai đoạn):
 
-Prepare (Giai đoạn chuẩn bị): Proposer gửi một tin nhắn "prepare" chứa một số tiền đề (ballot number) đến tất cả các acceptor. Acceptors sẽ kiểm tra số tiền đề và trả về thông tin về các giá trị đã chấp nhận trước đó (nếu có).
+- Prepare (Giai đoạn chuẩn bị): Proposer gửi một tin nhắn "prepare" chứa một số tiền đề (ballot number) đến tất cả các acceptor. Acceptors sẽ kiểm tra số tiền đề và trả về thông tin về các giá trị đã chấp nhận trước đó (nếu có).
 
-Promise : Acceptors phản hồi tin nhắn "promise" cho proposer với số tiền đề cao nhất mà họ đã nhận được và thông tin về giá trị đã chấp nhận trước đó (nếu có).
+- romise : Acceptors phản hồi tin nhắn "promise" cho proposer với số tiền đề cao nhất mà họ đã nhận được và thông tin về giá trị đã chấp nhận trước đó (nếu có).
 
-Accept (Giai đoạn chấp nhận): Nếu proposer nhận được đủ số lượng chứa từ acceptors và không có bất kỳ acceptor nào đã chấp nhận giá trị khác, proposer gửi một tin nhắn "accept" chứa giá trị mới đến tất cả các acceptors.      
+- Accept (Giai đoạn chấp nhận): Nếu proposer nhận được đủ số lượng chứa từ acceptors và không có bất kỳ acceptor nào đã chấp nhận giá trị khác, proposer gửi một tin nhắn "accept" chứa giá trị mới đến tất cả các acceptors.      
 
-Accepted (Giai đoạn đã chấp nhận): Acceptors nhận tin nhắn "accept" từ proposer và gửi tin nhắn "accepted" đến tất cả các learners để thông báo về giá trị đã chấp nhận.
+- Accepted (Giai đoạn đã chấp nhận): Acceptors nhận tin nhắn "accept" từ proposer và gửi tin nhắn "accepted" đến tất cả các learners để thông báo về giá trị đã chấp nhận.
 ### Safety (An toàn):
 
 Paxos đảm bảo tính nhất quán bằng cách đảm bảo rằng chỉ có một giá trị duy nhất được chấp nhận và đồng thuận trong mỗi giai đoạn.           
@@ -102,19 +104,18 @@ Trong hệ thống phân tán Paxos, nếu một server bị down, các phase s�
 - Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. 
 
 
-![Alt text](/Picture/Storage/image-2.png)  
 ![Alt text](image-2.png)          
 
-[1] Proposer gửi một thông điệp "prepare" với một số nhận dạng duy nhất (n).  
+- [1] Proposer gửi một thông điệp "prepare" với một số nhận dạng duy nhất (n).  
 
-[2] Mỗi acceptor kiểm tra xem nếu n lớn hơn hoặc bằng số phiên bản lớn nhất mà nó đã đồng ý trước đó (vn), nó sẽ gửi một thông điệp "promise" cho proposer, bao gồm số phiên bản lớn nhất mà nó đã đồng ý trước đó.    
+- [2] Mỗi acceptor kiểm tra xem nếu n lớn hơn hoặc bằng số phiên bản lớn nhất mà nó đã đồng ý trước đó (vn), nó sẽ gửi một thông điệp "promise" cho proposer, bao gồm số phiên bản lớn nhất mà nó đã đồng ý trước đó.    
  
-[3] Nếu proposer nhận được đủ số lượng thông điệp "promise" từ các acceptor, nó sẽ gửi một thông điệp "accept" tới tất cả các acceptor, bao gồm nhận dạng duy nhất (n) và giá trị đề xuất (v).          
-[4] Mỗi acceptor sẽ kiểm tra xem giá trị đề xuất này chưa từ chối bởi bất kỳ acceptor nào khác, nếu chưa, nó sẽ gửi thông điệp "accepted" cho proposer, để thông báo rằng giá trị đề xuất đã được chấp nhận.       
+- [3] Nếu proposer nhận được đủ số lượng thông điệp "promise" từ các acceptor, nó sẽ gửi một thông điệp "accept" tới tất cả các acceptor, bao gồm nhận dạng duy nhất (n) và giá trị đề xuất (v).          
+- [4] Mỗi acceptor sẽ kiểm tra xem giá trị đề xuất này chưa từ chối bởi bất kỳ acceptor nào khác, nếu chưa, nó sẽ gửi thông điệp "accepted" cho proposer, để thông báo rằng giá trị đề xuất đã được chấp nhận.       
 
-[5] Sau khi một giá trị đề xuất đã được chấp nhận bởi đủ số lượng acceptor giá trị đề xuất đã được chấp nhận và được áp dụng trên toàn bộ hệ thống.
+- [5] Sau khi một giá trị đề xuất đã được chấp nhận bởi đủ số lượng acceptor giá trị đề xuất đã được chấp nhận và được áp dụng trên toàn bộ hệ thống.
 
-###
+### Số lượng node
 Trong Paxos và Raft, số lượng node được khuyến nghị nên là số lẻ (ví dụ: 3, 5, 7, 9) để đảm bảo tính sẵn sàng cao và khả năng chịu lỗi tốt hơn. Điều này liên quan đến cách các giao thức phân tán này hoạt động.
 
 Trong Paxos, số lượng node được khuyến nghị nên là từ 3 đến 5. Trong một cluster Paxos với số lượng node là lẻ, khi một node gặp sự cố hoặc bị ngắt kết nối, các node còn lại vẫn có thể hoạt động để đạt được sự đồng bộ và đồng nhất. Trong trường hợp có số lượng node là chẵn, tình huống có thể xảy ra là hai nhóm node có số lượng bằng nhau không thể đạt được đồng thuận vì mỗi nhóm có số phiếu bình đẳng.
