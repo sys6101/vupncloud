@@ -10,7 +10,7 @@ Thuật toán Raft dựa trên ý tưởng của một nhóm các máy chủ đ�
 
 ### Election (Bầu cử):
 
-![Alt text](image.png)
+![Alt text](/Picture/Storage/raft1.png)
 
 Mỗi người đồng đảng có một thời gian chờ ngẫu nhiên và trong thời gian này, nếu không nhận được tin nhắn từ leader, họ sẽ tự xem mình là ứng cử viên (candidate) và bắt đầu quá trình bầu cử.
 
@@ -31,7 +31,7 @@ Trong trường hợp cluster có 3 thành viên, để đảm bảo tính nhấ
 Leader nhận yêu cầu từ khách hàng và phân phối các yêu cầu cho các người đồng đảng.
 Leader gửi các tin nhắn heartbeats định kỳ cho các người đồng đảng để duy trì sự nhất quán và tránh bầu cử mới.
 ### Log Replication (Sao chép nhật ký):
-![Alt text](image-3.png)
+![Alt text](/Picture/Storage/raft2.png)
 Mỗi yêu cầu được gửi bởi khách hàng được ghi vào log của leader.
 Leader phân phối log cho các người đồng đảng và đợi cho đến khi log được sao chép đến đa số các người đồng đảng trước khi áp dụng yêu cầu.
 ### Safety (An toàn):
@@ -104,7 +104,7 @@ Trong hệ thống phân tán Paxos, nếu một server bị down, các phase s�
 - Sau khi một giá trị đề xuất đã được chấp nhận: Nếu server bị down là một nút trong hệ thống phân tán, các nút khác vẫn có thể tiếp tục thực hiện các hành động cần thiết để xử lý giá trị đề xuất. 
 
 
-![Alt text](image-2.png)          
+![Alt text](/Picture/Storage/paxos.png)          
 
 - [1] Proposer gửi một thông điệp "prepare" với một số nhận dạng duy nhất (n).  
 
