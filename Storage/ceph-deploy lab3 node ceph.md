@@ -82,13 +82,13 @@ Cấu hình file ceph.conf trước khi thực hiện cài đặt các gói cầ
     osd pool default min size = 1 
     EOF
 
-- public network: Đường trao đổi thông tin giữa các node Ceph và cũng là đường client kết nối vào
-- cluster network: Đường đồng bộ dữ liệu    
-- Note: Các IP file /etc/hosts phải thuộc subnet của public network 
+
 
 Các thành phần
-
+- public network: Đường trao đổi thông tin giữa các node Ceph và cũng là đường client kết nối vào
+- cluster network: Đường đồng bộ dữ liệu    
 - public network và cluster network: Chỉ định địa chỉ mạng mà Ceph sử dụng cho lưu lượng công cộng và cụm tương ứng. Trong ví dụ này, đều dùng 192.168.54.0/24
+- Note: Các IP file /etc/hosts phải thuộc subnet của public network 
 - osd objectstore: Chỉ định backend lưu trữ đối tượng mà Ceph sẽ sử dụng. Trong ví dụ này, nó được thiết lập thành bluestore, đây là backend được khuyến nghị cho Ceph.
 - mon_allow_pool_delete: Thiết lập cho phép xóa các pool khỏi cụm Ceph.
 - osd pool default size: Chỉ định số OSD (Object Storage Daemons) mà mỗi nhóm đặt chỗ nên được sao chép đến. Trong ví dụ này, kích thước mặc định được thiết lập để là 3.
@@ -96,7 +96,7 @@ Các thành phần
 
 Tiến hình cài đặt Ceph Pacific trên các node
 
-$ ceph-deploy install --release pacific ceph01 ceph02 ceph03
+    $ ceph-deploy install --release pacific ceph01 ceph02 ceph03
 Khi cài đặt thành công thì sẽ có thể kiểm tra version của Ceph trên cả 3 node
 
     $ ceph -v
