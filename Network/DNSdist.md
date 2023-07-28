@@ -112,33 +112,34 @@ options edns0
 Từ DNSlient kiểm tra xem DNSDist hoạt động hay chưa:
 
 ```makefile
-root@dnsclient:/etc# dig [google.com](http://google.com/) @10.0.218.107
-
-; <<>> DiG 9.11.3-1ubuntu1.11-Ubuntu <<>> [google.com](http://google.com/) @10.0.218.107
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29055
+                      
+root@dnsclient:/etc# dig google.com @10.0.218.107
+                                                             
+; <<>> DiG 9.11.3-1ubuntu1.11-Ubuntu <<>> google.com @10.0.218.107
+;; global options: +cmd                                          
+;; Got answer:                                                 
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52091
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1
-
-;; OPT PSEUDOSECTION:
+                                                                    
+;; OPT PSEUDOSECTION:                 
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: c419bf0699dadf79b930d3a264c1e9b1ede3747489964e5c (good)
-;; QUESTION SECTION:
-;[google.com](http://google.com/).                    IN      A
-
-;; ANSWER SECTION:
-[google.com](http://google.com/).             300     IN      A       172.217.27.14
-
+; COOKIE: 045f7392e24e1174f63dd51c64c1e7ab16c68e4deeb89c73 (good)
+;; QUESTION SECTION:                                             
+;google.com.                    IN      A
+                                         
+;; ANSWER SECTION:    
+google.com.             98      IN      A       142.251.220.46
+                                                              
 ;; AUTHORITY SECTION:
-[google.com](http://google.com/).             172060  IN      NS      [ns3.google.com](http://ns3.google.com/).
-[google.com](http://google.com/).             172060  IN      NS      [ns1.google.com](http://ns1.google.com/).
-[google.com](http://google.com/).             172060  IN      NS      [ns2.google.com](http://ns2.google.com/).
-[google.com](http://google.com/).             172060  IN      NS      [ns4.google.com](http://ns4.google.com/).
-
-;; Query time: 63 msec
-;; SERVER: 10.0.218.107#53(10.0.218.107)
-;; WHEN: Thu Jul 27 05:51:13 CEST 2023
-;; MSG SIZE  rcvd: 155
+google.com.             172598  IN      NS      ns2.google.com.
+google.com.             172598  IN      NS      ns3.google.com.
+google.com.             172598  IN      NS      ns1.google.com.
+google.com.             172598  IN      NS      ns4.google.com.
+                                                               
+;; Query time: 3 msec                                 
+;; SERVER: 10.0.218.107#53(10.0.218.107)                                                
+;; WHEN: Thu Jul 27 05:42:35 CEST 2023                                                  
+;; MSG SIZE  rcvd: 155 
 ```
 
 Khi sử dụng DNSDist, nếu bạn tắt một trong hai Resolver (máy chủ DNS upstream) trong pool, DNSDist vẫn có thể tiếp tục phân giải các truy vấn DNS bằng cách sử dụng Resolver còn lại. Tuy nhiên, khi bạn tắt cả hai Resolver trong pool, DNSDist sẽ không thể phân giải truy vấn DNS và sẽ không hoạt động.
