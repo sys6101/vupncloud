@@ -70,31 +70,32 @@ Dưới đây là một số câu lệnh liên quan đến các thành phần ch
 
 **Ceph Monitor (ceph mon):**
 
-- Khởi động Ceph Monitor: systemctl start ceph-mon@<mon-id>
-- Tắt Ceph Monitor: systemctl stop ceph-mon@<mon-id>
+- Khởi động Ceph Monitor: systemctl start ceph-mon@{mon-id}
+- Tắt Ceph Monitor: systemctl stop ceph-mon@{mon-id}
 - Kiểm tra trạng thái các Monitor: ceph quorum_status
   
 **Ceph Manager (ceph mgr):**
 
-- Khởi động Ceph Manager: systemctl start ceph-mgr@<mgr-id>
-- Tắt Ceph Manager: systemctl stop ceph-mgr@<mgr-id>
+- Khởi động Ceph Manager: systemctl start ceph-mgr@{mgr-id}
+- Tắt Ceph Manager: systemctl stop ceph-mgr@{mgr-id}
 - Kiểm tra trạng thái các Manager: ceph mgr status
 
 **Ceph OSD (ceph osd):**
 
-- Khởi động Ceph OSD: systemctl start ceph-osd@<osd-id>
-- Tắt Ceph OSD: systemctl stop ceph-osd@<osd-id>
+- Khởi động Ceph OSD: systemctl start ceph-osd@{osd-id}
+- Tắt Ceph OSD: systemctl stop ceph-osd@{osd-id}
 - Kiểm tra trạng thái các OSD: ceph osd status
 
 **Ceph Block Device (RBD):**
 
-- Tạo một pool để lưu trữ RBD: ceph osd pool create <pool-name> <pg-num>
-- Tạo một RBD: rbd create <image-name> --size <image-size> --pool <pool-name>
-- Gắn một RBD vào hệ thống: rbd map <image-name> --pool <pool-name>
-- Xóa một RBD: rbd remove <image-name> --pool <pool-name>
+- Tạo một pool để lưu trữ RBD: ceph osd pool create {pool-name} {pg-num}
+- Tạo một RBD: rbd create {image-name} --size {image-size} --pool {pool-name}
+- Gắn một RBD vào hệ thống: rbd map {image-name} --pool {pool-name}
+- Xóa một RBD: rbd remove {image-name} --pool {pool-name}
 
 **Ceph RADOS Gateway (RadosGW):**
 
-- Khởi động RadosGW: radosgw -c <path-to-config> --rgw-socket-path /var/run/ceph/ceph-rgw.<rgw-id>.asok
-- Tạo người dùng mới trên RadosGW: radosgw-admin user create --uid=<user-id> --display-name=<display-name>
-Lưu ý rằng cần thay thế <mon-id>, <mgr-id>, <osd-id>, <pool-name>, <pg-num>, <image-name>, <image-size>, <rgw-id>, <path-to-config>, <user-id>, và <display-name> bằng các giá trị tương ứng trong hệ thống Ceph của bạn. Các câu lệnh này được thực hiện từ máy chủ quản lý (admin node) hoặc từ các nút trong cụm Ceph.
+- Khởi động RadosGW: radosgw -c {path-to-config} --rgw-socket-path /var/run/ceph/ceph-rgw.{rgw-id}.asok
+- Tạo người dùng mới trên RadosGW: radosgw-admin user create --uid={user-id} --display-name={display-name}
+
+Lưu ý rằng cần thay thế {mon-id}, {mgr-id}, {osd-id}, {pool-name}, {pg-num}, {image-name}, {image-size}, {rgw-id}, {path-to-config}, {user-id}, và {display-name} bằng các giá trị tương ứng trong hệ thống Ceph của bạn. Các câu lệnh này được thực hiện từ máy chủ quản lý (admin node) hoặc từ các nút trong cụm Ceph.
