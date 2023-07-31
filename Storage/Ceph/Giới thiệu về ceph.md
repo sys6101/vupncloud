@@ -18,6 +18,10 @@ Nền tảng Ceph xây dựng dựa trên object, tổ chức blocks. Tất cả
 
 ## Kiển trúc, thành phần Ceph
 
+![Alt text](/Picture/Storage/mohinhceph.png)
+
+![Alt text](/Picture/Storage/rados2.png)
+
 ### Lưu Trữ Phân Phối Dữ Liệu Đáng Tin Cây (RADOS)
 
 Yếu tố nền tảng tạo nên Ceph storage cluster. Ceph data được lưu trên object, RADOS chịu trách nhiệm tổ chức, lưu trữ các object, bất kể loại dữ liệu. RADOS layer chắc chắn dữ liệu sẽ luôn chính xác, bảo đảm.Tất cả các phương thức truy cập trên RBD, CephFS, RADOSGW, librados đều hoạt động trên RADOS layer
@@ -65,37 +69,3 @@ XFS: Mang lại sự tin cậy, ổn định vững chắc cho FS. Được khuy
 XFS thuộc loại Journaling Filesystem, vì vậy, mỗi khi client thao tác với Ceph cluster, đầu tiên nó sẽ ghi vào Journaling Space sau đó mới là XFS file system. Điều này làm tăng chi phi về dữ liệu cũng như khiến XFS chạy chậm hơn Btrfs;
 Ext4: Fourth Extended Filesystem, thuộc loại Journaling Filesystem, hỗ trợ tốt Ceph OSD; Tuy nhiên nó không thân thiện bằng XFS. Từ góc độ hiệu năng, Ext4 chưa bằng Btrfs.
 
-### Các command 
-Dưới đây là một số câu lệnh liên quan đến các thành phần chính trong hệ thống lưu trữ phân tán Ceph:
-
-**Ceph Monitor (ceph mon):**
-
-- Khởi động Ceph Monitor: systemctl start ceph-mon@{mon-id}
-- Tắt Ceph Monitor: systemctl stop ceph-mon@{mon-id}
-- Kiểm tra trạng thái các Monitor: ceph quorum_status
-  
-**Ceph Manager (ceph mgr):**
-
-- Khởi động Ceph Manager: systemctl start ceph-mgr@{mgr-id}
-- Tắt Ceph Manager: systemctl stop ceph-mgr@{mgr-id}
-- Kiểm tra trạng thái các Manager: ceph mgr status
-
-**Ceph OSD (ceph osd):**
-
-- Khởi động Ceph OSD: systemctl start ceph-osd@{osd-id}
-- Tắt Ceph OSD: systemctl stop ceph-osd@{osd-id}
-- Kiểm tra trạng thái các OSD: ceph osd status
-
-**Ceph Block Device (RBD):**
-
-- Tạo một pool để lưu trữ RBD: ceph osd pool create {pool-name} {pg-num}
-- Tạo một RBD: rbd create {image-name} --size {image-size} --pool {pool-name}
-- Gắn một RBD vào hệ thống: rbd map {image-name} --pool {pool-name}
-- Xóa một RBD: rbd remove {image-name} --pool {pool-name}
-
-**Ceph RADOS Gateway (RadosGW):**
-
-- Khởi động RadosGW: radosgw -c {path-to-config} --rgw-socket-path /var/run/ceph/ceph-rgw.{rgw-id}.asok
-- Tạo người dùng mới trên RadosGW: radosgw-admin user create --uid={user-id} --display-name={display-name}
-
-Lưu ý rằng cần thay thế {mon-id}, {mgr-id}, {osd-id}, {pool-name}, {pg-num}, {image-name}, {image-size}, {rgw-id}, {path-to-config}, {user-id}, và {display-name} bằng các giá trị tương ứng trong hệ thống Ceph của bạn. Các câu lệnh này được thực hiện từ máy chủ quản lý (admin node) hoặc từ các nút trong cụm Ceph.
