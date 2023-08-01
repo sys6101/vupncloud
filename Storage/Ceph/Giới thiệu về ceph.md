@@ -20,7 +20,7 @@ Nền tảng Ceph xây dựng dựa trên object, tổ chức blocks. Tất cả
 
 ![Alt text](/Picture/Storage/mohinhceph.png)
 
-![Alt text](/Picture/Storage/rados2.png)
+
 
 ### Lưu Trữ Phân Phối Dữ Liệu Đáng Tin Cây (RADOS)
 
@@ -28,6 +28,7 @@ Yếu tố nền tảng tạo nên Ceph storage cluster. Ceph data được lưu
 
 Về tính nhất quán, dữ liệu sẽ luôn có bản sao, được phát hiện lỗi, khôi phục trên mọi node trong cluster. Khi ứng dụng lưu trữ tới Ceph cluster, dữ liệu sẽ được lưu tại Ceph Object Storage Device (OSD) dưới dạng object. Đây là thành phần duy nhất mà Ceph cluster sử dụng để lưu trữ và truy vấn, đọc ghi dữ liệu. Thông thường, tổng số ổ đĩa vật lý trong Ceph cluster sẽ bằng số lượng tiến trình OSD sử dụng để lưu trữ dữ liệu
 
+![Alt text](/Picture/Storage/rados2.png)
 ### Tiến Trình Giám Sát (Ceph Monitor – Ceph MON)
 
 Là một thành phần tập trung trong hệ thống Ceph, chịu trách nhiệm giám sát trạng thái toàn bộ cụm lưu trữ (cluster), theo dõi trạng thái của các OSD (Object Storage Daemon), MON (Monitor), PG (Placement Group), và CRUSH map (bản đồ CRUSH). Các nút trong cụm lưu trữ sẽ liên tục giám sát và chia sẻ thông tin về các thay đổi xảy ra trong hệ thống.

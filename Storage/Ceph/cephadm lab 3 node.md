@@ -2,6 +2,14 @@
 ## Mô hình 
 ![Alt text](/Picture/Storage/cephpacific.png)
 
+### Triển khai trên 3 node
+    cat << EOF > /etc/hosts
+    127.0.0.1 `hostname` localhost
+    192.168.54.63 ceph01
+    192.168.54.64 ceph02
+    192.168.54.78 ceph03
+    EOF
+
 ### Cài đặt cephadm
 
 
@@ -72,11 +80,11 @@ Phân phối khóa công khai ceph.pub đã được tạo bằng bootstrap
     3 hosts in cluster       
 
 ### Add mon
-    # ceph orch daemon add mon ceph02:192.168.54.63
-    # ceph orch daemon add mon ceph02:192.168.54.78
+    # ceph orch daemon add mon ceph02:192.168.54.64
+    # ceph orch daemon add mon ceph03:192.168.54.78
 
-    # ceph orch apply mon --placement="ceph1,ceph2,ceph3" --dry-run
-    # ceph orch apply mon --placement="ceph1,ceph2,ceph3"
+    # ceph orch apply mon --placement="ceph01,ceph02,ceph03" --dry-run
+    # ceph orch apply mon --placement="ceph01,ceph02,ceph03"
 ### Tạo OSD
 Có nhiều cách để tạo OSD mới, apply này sẽ sử dụng tất cả các thiết bị lưu trữ có sẵn và chưa được sử dụng
 
