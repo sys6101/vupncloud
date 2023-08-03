@@ -12,5 +12,7 @@ Ceph-mon sử dụng snapshot và trình vòng lặp để đồng bộ hóa tr�
 
 Tổng quan, Ceph-monitor cung cấp cho hệ thống lưu trữ phân tán Ceph tính năng giám sát tình trạng của toàn hệ thống, cung cấp các dịch vụ xác thực và ghi log, duy trì thông tin về các node lưu trữ và đảm bảo tính nhất quán dữ liệu trên toàn bộ cluster.
 
-![Alt text](/Picture/Storage/mon1.png)
+<p align="center">
+<img src="/Picture/Storage/mon1.png">
+</p>
 
