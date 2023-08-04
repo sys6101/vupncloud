@@ -1,7 +1,7 @@
 # Command Ceph
 
 
-**Ceph Monitor (ceph mon):**
+<!-- **Ceph Monitor (ceph mon):**
 
 
 - Khởi động Ceph Monitor: `systemctl start ceph-mon@{mon-id}`
@@ -16,7 +16,6 @@
 
 - `ceph mon remove <mon-name>`: Lệnh này được sử dụng để xóa một Ceph Monitor khỏi cluster. Bạn cần chỉ định tên của Monitor cần xóa.
 
-- `ceph mon getmap -o <file-name>`: Lệnh này được sử dụng để lấy bản đồ (map) hiện tại của Ceph Monitor và lưu vào một tệp tin. Bạn cần chỉ định tên tệp tin để lưu bản đồ.
 
 - `ceph mon metadata`: Lệnh này hiển thị thông tin metadata về các Ceph Monitor, bao gồm thông tin về tên, địa chỉ IP, port và các thuộc tính khác.
 
@@ -168,4 +167,4 @@ Lưu ý rằng các lệnh này phải được thực thi trên một node clie
 - `radosgw-admin metadata rm user <user-id> <metadata-key>` - Xóa một metadata của người dùng.
 
 Lưu ý rằng các lệnh này phải được thực thi trên một node admin trong cluster Ceph. Bạn có thể sử dụng lệnh `radosgw-admin --help` để hiển thị danh sách các lệnh khác liên quan đến RADOS Gateway.
-Lưu ý rằng cần thay thế {mon-id}, {mgr-id}, {osd-id}, {pool-name}, {pg-num}, {image-name}, {image-size}, {rgw-id}, {path-to-config}, {user-id}, và {display-name} bằng các giá trị tương ứng trong hệ thống Ceph của bạn. Các câu lệnh này được thực hiện từ máy chủ quản lý (admin node) hoặc từ các nút trong cụm Ceph.
+Lưu ý rằng cần thay thế {mon-id}, {mgr-id}, {osd-id}, {pool-name}, {pg-num}, {image-name}, {image-size}, {rgw-id}, {path-to-config}, {user-id}, và {display-name} bằng các giá trị tương ứng trong hệ thống Ceph của bạn. Các câu lệnh này được thực hiện từ máy chủ quản lý (admin node) hoặc từ các nút trong cụm Ceph. -->

@@ -43,9 +43,28 @@ Không nên sử dụng RAID cho Ceph Cluster:
 - Phương pháp nhân bản dữ liệu của Ceph khong yêu câu một ổ cứng trống cùng dung lượng ổ hỏng. Nó dùng đường truyền mạng để khôi phục dữ liệu trên ổ cứng lỗi từ nhiều node khác. Trong quá trình khôi phục dữ liệu, dựa vào tỉ lệ nhân bản và số PGs, hầu như toàn bộ các node sẽ tham gia vào quá trình khôi phục, giúp quá trình này diễn ra nhanh hơn.
 - Sẽ có vấn đề về hiệu năng trên Ceph Cluster khi I/O ngẫu nhiên trên RAID 5 và 6 rất chậm.
 
+## 4. Data dicrectory for OSD
 
+Data directory (hoặc datadir) là một thư mục trên hệ thống tệp nơi các bản ghi nhật ký và dữ liệu của một OSD Ceph được lưu trữ. Datadir thường nằm trong thư mục `/var/lib/ceph/osd/`.
 
-## 4. OSD commands
+Datadir được chia thành hai phần:
+
+* **Journal:** Thư mục này chứa các bản ghi nhật ký của các hoạt động ghi được thực hiện trên OSD. Nhật ký được sử dụng để khôi phục dữ liệu trong trường hợp OSD bị sập hoặc bị hỏng.
+* **Data:** Thư mục này chứa dữ liệu thực tế được lưu trữ bởi OSD. Dữ liệu được lưu trữ trong một định dạng phân tán, được gọi là RADOS, giúp cải thiện hiệu suất và độ tin cậy.
+
+Các tệp trong datadir có ý nghĩa như sau:
+
+* **journal.log:** Tệp này chứa các bản ghi nhật ký mới nhất.
+* **journal.old:** Tệp này chứa các bản ghi nhật ký cũ.
+* **metadata:** Tệp này chứa siêu dữ liệu về OSD, chẳng hạn như ID, trọng lượng và vị trí nghiền.
+* **data.0:** Tệp này chứa dữ liệu của OSD.
+* **data.1:** Tệp này chứa thêm dữ liệu của OSD.
+* **data.2:** Tệp này chứa thêm dữ liệu của OSD.
+* **...:** Các tệp này chứa thêm dữ liệu của OSD.
+
+Datadir là một phần quan trọng của hệ thống Ceph. Nó chứa tất cả dữ liệu được lưu trữ bởi OSD. Vì vậy, điều quan trọng là phải đảm bảo rằng datadir được sao lưu thường xuyên.
+
+## 5. OSD commands
 Một số câu lênh phổ biến để thao tác với OSD
 
 

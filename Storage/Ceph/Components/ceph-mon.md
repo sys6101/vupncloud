@@ -10,6 +10,11 @@ Ngoài việc giám sát tình trạng của các OSD và các node trong cluste
 
 Ceph-mon sử dụng snapshot và trình vòng lặp để đồng bộ hóa trên toàn bộ kho lưu trữ. Trình vòng lặp này giúp đảm bảo rằng các bản sao của cluster map được cập nhật đồng bộ trên toàn bộ cluster và đảm bảo rằng các node trong cluster đều có thông tin mới nhất về tình trạng của cluster.
 
+Số lượng thành phần Ceph-Mon cần thiết trong một cụm Ceph phụ thuộc vào yêu cầu và quy mô của hệ thống cụ thể, nhưng thường ít nhất cần có 3 thành phần để đảm bảo tính sẵn sàng cao (high availability).
+
+Trong một cụm Ceph, các Ceph-Mon cần giao tiếp với nhau để duy trì thông tin metadata và quản lý trạng thái của hệ thống. Việc có ít nhất 3 Ceph-Mon giúp đảm bảo tính sẵn sàng cao bởi vì nếu một trong số chúng gặp sự cố, các Ceph-Mon còn lại vẫn có thể làm việc và duy trì hoạt động của hệ thống.
+
+Tuy nhiên, trong một số trường hợp, như trong các môi trường thử nghiệm hoặc trong các cụm Ceph nhỏ, có thể sử dụng ít hơn 3 Ceph-Mon. Trong trường hợp này, tính sẵn sàng và khả năng chịu lỗi của hệ thống có thể bị ảnh hưởng.
 Tổng quan, Ceph-monitor cung cấp cho hệ thống lưu trữ phân tán Ceph tính năng giám sát tình trạng của toàn hệ thống, cung cấp các dịch vụ xác thực và ghi log, duy trì thông tin về các node lưu trữ và đảm bảo tính nhất quán dữ liệu trên toàn bộ cluster.
 
 <p align="center">
