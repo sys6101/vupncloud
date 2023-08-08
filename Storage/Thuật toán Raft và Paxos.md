@@ -15,7 +15,7 @@ Thuật toán Raft dựa trên ý tưởng của một nhóm các máy chủ đ�
 Mỗi người đồng đảng có một thời gian chờ ngẫu nhiên và trong thời gian này, nếu không nhận được tin nhắn từ leader, họ sẽ tự xem mình là ứng cử viên (candidate) và bắt đầu quá trình bầu cử.
 
 Ứng cử viên gửi các yêu cầu bầu cử đến các người đồng đảng khác và nếu nhận được đa số phiếu ủng hộ, ứng cử viên sẽ trở thành leader.
-
+ 
 Nếu một người đồng đảng nhận được yêu cầu bầu cử từ ứng cử viên, họ sẽ phản hồi với phiếu ủng hộ và chấp nhận ứng cử viên làm leader.
 
 Trong thuật toán Raft, quá trình bầu cử trưởng nhóm (leader election) sẽ diễn ra như sau trong trường hợp cluster có 3 thành viên:
