@@ -56,11 +56,10 @@ Các tệp trong datadir có ý nghĩa như sau:
 
 * **journal.log:** Tệp này chứa các bản ghi nhật ký mới nhất.
 * **journal.old:** Tệp này chứa các bản ghi nhật ký cũ.
-* **metadata:** Tệp này chứa siêu dữ liệu về OSD, chẳng hạn như ID, trọng lượng và vị trí nghiền.
+* **metadata:** Tệp này chứa metadata về OSD, chẳng hạn như ID, weight, crush location
 * **data.0:** Tệp này chứa dữ liệu của OSD.
 * **data.1:** Tệp này chứa thêm dữ liệu của OSD.
 * **data.2:** Tệp này chứa thêm dữ liệu của OSD.
-* **...:** Các tệp này chứa thêm dữ liệu của OSD.
 
 Datadir là một phần quan trọng của hệ thống Ceph. Nó chứa tất cả dữ liệu được lưu trữ bởi OSD. Vì vậy, điều quan trọng là phải đảm bảo rằng datadir được sao lưu thường xuyên.
 

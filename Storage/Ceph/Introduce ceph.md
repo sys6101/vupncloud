@@ -13,7 +13,9 @@ Nguyên tắc cơ bản của Ceph:
 - Chạy tương thích với mọi phần cứng      
 - Ceph xây dựng kiến trúc mạnh mẽ, tính mở rộng cao, hiệu năng cao, nền tảng mạnh mẽ cho doanh nghiệp, giảm bớt sự phụ thuộc vào phần cứng đắt tiền.      
 Ceph universal storage system cung cấp khả năng lưu trữ trên block, file, object, cho phép custom theo ý muốn.      
-Nền tảng Ceph xây dựng dựa trên object, tổ chức blocks. Tất cả các kiểu dữ liệu, block, file đều được lưu trên object thuộc Ceph cluster. Object storage là giải pháp cho hệ thống lưu trữ truyền thống, cho phép xây dựng kiến trúc hạ tầng độc lập với phần cứng. Ceph quản lý trên mức object, nhân bản obj toàn cluster, nâng cao tính bảo đảm. Tại Ceph, object sẽ không tồn tại đường dẫn vật lý, kiến obj linh hoạt khi lưu trữ, tạo nền tảng mở rộng tới hàng petabyte-exabyte.     
+Nền tảng Ceph xây dựng dựa trên object, tổ chức blocks. Tất cả các kiểu dữ liệu, block, file đều được lưu trên object thuộc Ceph cluster. Object storage hau để đảm bảo tính sẵn sàng và độ tin cậy của hệ thống.
+
+Các OSD trong Ceph hoạt động như các tiến trình độc lập và có thể được triển khai trên các máy chủ vật lý hoặc máy ảo. Các OSD cũng sử dụng các giải thuật cân bằng tải để đảm bảo rằng dữ liệu được phân phối đồng đều trên toàn bộ hệ thống và tránh tlà giải pháp cho hệ thống lưu trữ truyền thống, cho phép xây dựng kiến trúc hạ tầng độc lập với phần cứng. Ceph quản lý trên mức object, nhân bản obj toàn cluster, nâng cao tính bảo đảm. Tại Ceph, object sẽ không tồn tại đường dẫn vật lý, kiến obj linh hoạt khi lưu trữ, tạo nền tảng mở rộng tới hàng petabyte-exabyte.     
 
 
 ## Kiển trúc, thành phần Ceph
@@ -22,7 +24,7 @@ Nền tảng Ceph xây dựng dựa trên object, tổ chức blocks. Tất cả
 
 
 
-### Lưu Trữ Phân Phối Dữ Liệu Đáng Tin Cây (RADOS)
+### Lưu Trữ Phân Phối Dữ Liệu Đáng Tin Cậy (RADOS)
 
 Yếu tố nền tảng tạo nên Ceph storage cluster. Ceph data được lưu trên object, RADOS chịu trách nhiệm tổ chức, lưu trữ các object, bất kể loại dữ liệu. RADOS layer chắc chắn dữ liệu sẽ luôn chính xác, bảo đảm.Tất cả các phương thức truy cập trên RBD, CephFS, RADOSGW, librados đều hoạt động trên RADOS layer
 
@@ -48,15 +50,13 @@ Ceph Block Device (RBD) là một tính năng trong hệ thống Ceph, cho phép
 
 Ceph Object Gateway (RGW) hay RADOS Gateway là một thành phần trong hệ thống lưu trữ phân tán Ceph, cho phép lưu trữ và truy xuất dữ liệu theo mô hình dịch vụ đối tượng (object storage). RGW cung cấp một RESTful API để quản lý các đối tượng dữ liệu, cho phép các ứng dụng và dịch vụ có thể truy xuất và lưu trữ dữ liệu trực tiếp từ hệ thống Ceph.TTương thích với Amazone S3 (Simple Storage Service) và OpenStack Object Storage API (Swift). RGW cũng hỗ trợ OpenStack Keystone authentication services.
 
-### Ceph Metadata Server (MDS)
-Ceph Metadata Server (MDS) là một thành phần quan trọng trong hệ thống lưu trữ phân tán Ceph, đảm nhiệm vai trò quản lý metadata của hệ thống tập tin CephFS (Ceph File System). MDS giúp theo dõi thông tin về cấu trúc thư mục, quyền truy cập, và các siêu dữ liệu khác liên quan đến tệp và thư mục trong hệ thống.
 
-Khi các máy khách (clients) gửi yêu cầu truy cập dữ liệu trong CephFS, MDS sẽ cung cấp thông tin về định vị tệp và thư mục, giúp máy khách có thể truy xuất dữ liệu một cách hiệu quả. MDS cũng giữ vai trò quan trọng trong việc đảm bảo tính toàn vẹn và đồng bộ hóa metadata giữa các nút lưu trữ (OSD) trong hệ thống Ceph.
 
-### Ceph File System (CephFS)
+
 Ceph File System (CephFS) là một hệ thống tập tin phân tán và có tính sẵn sàng cao trong hệ thống lưu trữ phân tán Ceph. Nó cung cấp một giao diện tập tin truyền thống cho việc truy xuất và quản lý dữ liệu trên Ceph Storage Cluster. CephFS cho phép các máy khách (clients) truy cập vào các tệp và thư mục dưới dạng hệ thống tập tin tiêu chuẩn, giống như khi làm việc với các hệ thống tập tin trên máy chủ thông thường.
 
 ### Ceph Object Storage Daemon– OSD
+
 Trong Ceph có OSD ( viết tắt của "Object Storage Daemon".) là một phần tử quan trọng của hệ thống lưu trữ Ceph và đảm nhiệm việc lưu trữ các đối tượng (object), dữ liệu khối (block) và tệp (file) trên các đĩa cứng. Mỗi OSD sẽ chịu trách nhiệm cho một phần của dữ liệu và đảm bảo sao lưu dữ liệu đó trên nhiều máy chủ khác nhau để đảm bảo tính sẵn sàng và độ tin cậy của hệ thống.
 
 Các OSD trong Ceph hoạt động như các tiến trình độc lập và có thể được triển khai trên các máy chủ vật lý hoặc máy ảo. Các OSD cũng sử dụng các giải thuật cân bằng tải để đảm bảo rằng dữ liệu được phân phối đồng đều trên toàn bộ hệ thống và tránh tình trạng quá tải hay quá tải trên một số máy chủ.

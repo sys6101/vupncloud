@@ -92,13 +92,14 @@ Có nhiều cách để tạo OSD mới, apply này sẽ sử dụng tất cả 
 
 
     [root@ceph01 ceph]# ceph orch device ls
-    HOST    PATH      TYPE  DEVICE ID              SIZE  AVAILABLE  REFRESHED  REJECT REASONS                                                      
-    ceph01  /dev/vdb  hdd   fcf2547f-6fc6-4d68-9  10.7G             2m ago     Insufficient space (<10 extents) on vgs, LVM detected, locked       
-    ceph01  /dev/vdc  hdd   472ebc66-63d7-49e6-8  10.7G             2m ago     Insufficient space (<10 extents) on vgs, LVM detected, locked       
-    ceph02  /dev/vdb  hdd   34996f2d-c968-4ab5-8  10.7G             2m ago     Insufficient space (<10 extents) on vgs, LVM detected, locked       
-    ceph02  /dev/vdc  hdd   57ebc100-ded6-4568-a  10.7G             2m ago     Insufficient space (<10 extents) on vgs, LVM detected, locked       
-    ceph03  /dev/vdb  hdd   d3b30194-8989-4770-a  10.7G             2m ago     Insufficient space (<10 extents) on vgs, LVM detected, locked       
-    ceph03  /dev/vdc  hdd   a6b4c8cd-57c7-497e-b  10.7G             2m ago     Insufficient space (<10 extents) on vgs, LVM detected, locked 
+        HOST    PATH      TYPE  DEVICE ID              SIZE  AVAILABLE  REFRESHED  REJECT REASONS  
+        ceph01  /dev/vdb  hdd   fcf2547f-6fc6-4d68-9  10.7G  Yes        103s ago                   
+        ceph01  /dev/vdc  hdd   472ebc66-63d7-49e6-8  10.7G  Yes        103s ago                   
+        ceph02  /dev/vdb  hdd   34996f2d-c968-4ab5-8  10.7G  Yes        49s ago                    
+        ceph02  /dev/vdc  hdd   57ebc100-ded6-4568-a  10.7G  Yes        49s ago                    
+        ceph03  /dev/vdb  hdd   d3b30194-8989-4770-a  10.7G  Yes        49s ago                    
+        ceph03  /dev/vdc  hdd   a6b4c8cd-57c7-497e-b  10.7G  Yes        49s ago                    
+
 
 
     # ceph -s
