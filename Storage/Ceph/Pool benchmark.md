@@ -294,4 +294,14 @@ Tạo hai rule Crush Map mới ("replicated_ssd" và "replicated_hdd"), mỗi ru
         Disk stats (read/write):
         vda: ios=411/4158, merge=0/173, ticks=505/15747, in_queue=16252, util=4.44%
 
+
+Trong quá trình benchmark dùng iostat để check xem disk có hoạt động hay không:
+
+    iostat -x 2 /dev/vd*
+
+Và check disk tương ứng:
+
+    ceph-volume lvm list | less
+
+
 <!-- Xóa bucket thì xóa thì xóa từ cái thấp nhất: `ceph osd crush remove` -->
