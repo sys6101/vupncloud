@@ -86,3 +86,31 @@ Bắt đầu benchmark:
 - Percentiles: Thời gian trễ tại các phần trăm khác nhau. Thường được sử dụng để hiểu rõ hơn về biểu đồ thời gian trễ.
 
 - Error Rates: Tỷ lệ lỗi trong quá trình thực hiện kiểm tra. Điều này có thể giúp bạn xác định các vấn đề tiềm ẩn trong hệ thống.
+
+
+## Tách thành 2 pool ssd và hdd
+ Tạo 2 pool tên ssd và hdd
+
+    [root@ceph01 centos]# ceph osd crush rm-device-class osd.0
+    done removing class of osd(s): 0
+    [root@ceph01 centos]# ceph osd crush set-device-class ssd osd.0
+    set osd(s) 0 to class 'ssd'
+
+`osd.1` và `osd.2` tương tự
+
+Taọ lần lượt pool ssd và hdd
+
+    ceph osd pool create ssd 100 100
+    ceph osd pool create hdd 100 100
+Tạo rule 
+
+    ceph osd crush rule create-replicated <rule-name> <root> <failure-domain> <class>
+    ceph osd crush rule create-replicated replicated_ssd default host ssd
+    ceph osd crush rule create-replicated replicated_hdd default host hdd
+
+Set rule 
+
+    ceph osd pool set ssd crush_rule feplicated_ssd
+    ceph osd pool set hdd crush_rule feplicated_hdd
+
+<!-- Xóa bucket thì xóa thì xóa từ cái thấp nhất: `ceph osd crush remove` -->
