@@ -190,4 +190,31 @@ Kiểm tra xem ceph-dashboard đã được cài đặt thành công hay chưa
     {
         "dashboard": "https://192.168.54.63:8443/"
     }
-       
+    
+Trong quá trình làm có WARN:        
+Lỗi 1:
+
+    1 daemons have recently crashed
+
+FIX:
+    ceph crash ls
+
+    If you want to read the message:
+
+    ceph crash info <id>
+
+    then:
+
+    ceph crash archive <id>
+
+    or:
+
+    ceph crash archive-all
+
+Lỗi 2:
+
+    AUTH_INSECURE_GLOBAL_ID_RECLAIM_ALLOWED: mons are allowing insecure global_id reclaim
+
+FIX:
+
+    ceph config set mon auth_allow_insecure_global_id_reclaim false
