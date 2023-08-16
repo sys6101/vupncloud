@@ -25,6 +25,8 @@
       4    hdd  0.00980          osd.4            up   1.00000  1.00000
 
 
+Thêm `osd crush update on start = false` vào ceph.conf để khi reboot không bị reset
+
 **Taọ lần lượt 2 pool**     
 
         ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]] [replicated] \
