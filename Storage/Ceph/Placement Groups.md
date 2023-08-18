@@ -81,3 +81,74 @@ Peered|Khi các OSD đã kết nối và cập nhật dữ liệu cho nhau.
 Snaptrim|Khi Ceph đang loại bỏ các phiên bản snapshot cũ.
 Snaptrim Wait|Khi đợi cho quá trình snaptrim hoàn thành.
 Snaptrim Error|Khi quá trình snaptrim gặp lỗi.|Lỗi trong quá trình loại bỏ phiên bản snapshot cũ có thể ảnh hưởng đến quản lý dung lượng và hiệu suất của hệ thống.
+
+### DEGRADED
+
+Việc Ghi Dữ Liệu: Khi một thiết bị client ghi một đối tượng vào máy chủ lưu trữ chính (primary OSD), primary OSD sẽ phải sao chép dữ liệu sang các thiết bị lưu trữ sao chép (replica OSDs). Sau khi primary OSD đã lưu trữ đối tượng, PG (placement group) sẽ ở trạng thái "DEGRADED" cho đến khi primary OSD nhận được thông báo xác nhận từ các replica OSDs rằng Ceph đã tạo các đối tượng sao chép thành công.
+
+Nguyên Nhân Trạng Thái "DEGRADED": Một OSD có thể đang hoạt động mặc dù nó chưa nắm giữ tất cả các đối tượng. Nếu một OSD bị ngưng hoạt động, Ceph sẽ đánh dấu các PG gán cho OSD này là "DEGRADED". Khi OSD này trở lại hoạt động, các OSD sẽ cần kết nối lại với nhau (peer) để đồng bộ dữ liệu. Dù sao, ngay cả khi PG bị "DEGRADED", một thiết bị client vẫn có thể ghi dữ liệu mới vào PG này nếu nó đang hoạt động.
+
+Trường Hợp OSD Ngừng Hoạt Động Và Xử Lý: Nếu một OSD bị ngưng hoạt động và tình trạng "DEGRADED" không được khắc phục, Ceph có thể đánh dấu OSD bị ngưng hoạt động là không còn trong cụm và sẽ chuyển dữ liệu từ OSD bị ngưng hoạt động sang OSD khác. Thời gian giữa việc đánh dấu OSD bị ngưng hoạt động và việc đánh dấu không còn trong cụm được điều khiển bởi tham số "mon osd down out interval", mặc định là 600 giây.
+
+### RECOVERING
+Ceph được thiết kế để đảm bảo tính chống lỗi ở một quy mô lớn, trong đó sự cố về phần cứng và phần mềm là thường xuyên. Khi một OSD ngưng hoạt động, nội dung của nó có thể chậm lại so với trạng thái hiện tại của các bản sao khác trong các nhóm đặt vị trí (placement groups). Khi OSD được khởi động lại, nội dung của các nhóm đặt vị trí cần được cập nhật để phản ánh trạng thái hiện tại. Trong khoảng thời gian đó, OSD có thể ở trạng thái khôi phục (recovering).
+
+Quá trình khôi phục không luôn dễ dàng, vì sự cố phần cứng có thể gây ra sự cố tràn lan của nhiều OSD. Ví dụ, một switch mạng cho một rack hoặc tủ có thể hỏng, dẫn đến việc các OSD trên nhiều máy chủ có thể chậm lại so với trạng thái hiện tại của cụm. Mỗi OSD phải khôi phục sau khi sự cố được giải quyết.
+
+Ceph cung cấp một số cài đặt để cân bằng việc sử dụng tài nguyên giữa các yêu cầu dịch vụ mới và việc khôi phục các đối tượng dữ liệu và phục hồi các nhóm đặt vị trí về trạng thái hiện tại. Cài đặt "osd recovery delay start" cho phép một OSD khởi động lại, tái kết nối và thậm chí xử lý một số yêu cầu phát lại trước khi bắt đầu quá trình khôi phục. Cài đặt "osd recovery thread timeout" đặt một thời gian chờ cho luồng, vì nhiều OSD có thể gặp sự cố, khởi động lại và tái kết nối ở tốc độ khác nhau. Cài đặt "osd recovery max active" giới hạn số lượng yêu cầu khôi phục mà một OSD sẽ xử lý đồng thời để tránh việc OSD không thể phục vụ. Cài đặt "osd recovery max chunk" giới hạn kích thước của các phần dữ liệu đã khôi phục để tránh quá tải mạng.
+osd down
+
+
+### BACKFILLING
+
+"Backfilling" trong Ceph mô tả một trạng thái mà một OSD đang thực hiện việc tái cân bằng dữ liệu của nó với các OSD khác trong cụm. Khi một OSD mới được thêm vào cụm hoặc một OSD bị lỗi và được sửa chữa hoặc thay thế, dữ liệu cần được tái cân bằng để đảm bảo việc phân bổ dữ liệu tuân thủ theo cấu hình yêu cầu về sự độc lập và bản sao.
+
+Khi một quá trình tái cân bằng diễn ra, một số OSDs có thể ở trạng thái "backfilling" khi chúng nhận dữ liệu mới hoặc gửi dữ liệu cho các OSD khác.
+
+Đặc điểm của quá trình "backfilling":
+
+Khôi phục dữ liệu: Đây là việc tái cân bằng dữ liệu từ OSD hoạt động sang OSD khác.
+
+Hiệu quả: Ceph cố gắng thực hiện backfilling một cách hiệu quả nhất có thể, nhưng quá trình này có thể làm giảm hiệu suất tổng thể của cụm nếu nó diễn ra quá nhanh. Vì vậy, có các thiết lập cụ thể để kiểm soát tốc độ của quá trình này.
+
+Trạng thái "backfilling" là một phần bình thường của hoạt động của Ceph và giúp đảm bảo dữ liệu được lưu trữ một cách an toàn và hiệu quả trên toàn bộ cụm
+
+### REMAPPED
+"Remapped" liên quan đến việc tái ánh xạ các đối tượng hoặc PGs (Placement Groups) từ một OSD (Object Storage Daemon) sang một OSD khác. Điều này thường diễn ra trong các tình huống như:
+
+OSD Failure: Khi một OSD bị lỗi hoặc không khả dụng, Ceph sẽ cố gắng tái ánh xạ dữ liệu của OSD đó đến các OSD khác trong cụm để duy trì tính sẵn sàng và độ tin cậy của dữ liệu.
+
+Tái cân bằng dữ liệu: Khi thêm hoặc loại bỏ OSDs khỏi cụm, Ceph sẽ tái cân bằng dữ liệu. Trong quá trình này, PGs sẽ được "remapped" đến các OSD mới.
+
+Cấu hình CRUSH Map thay đổi: Ceph sử dụng thuật toán CRUSH để xác định nơi đặt dữ liệu. Mỗi khi CRUSH map được cập nhật (ví dụ: thay đổi trọng số của OSD hoặc thay đổi cấu trúc cây), một số PGs có thể cần phải được remapped.
+
+
+Lưu ý rằng việc remapped là một phần tự nhiên và thường xuyên của hoạt động của Ceph, nhưng nó cũng có thể tăng tải trên cụm và giảm hiệu suất. Vì vậy, việc giám sát và quản lý tốc độ tái ánh xạ có thể giúp tối ưu hóa hiệu suất và độ tin cậy của cụm.
+### STALE
+"Stale" thường liên quan đến Placement Groups (PGs). Một PG ở trạng thái "stale" thường chỉ ra rằng Ceph Monitor (cơ sở dữ liệu quản lý và điều phối trung tâm của Ceph) không nhận được cập nhật từ PG đó trong một khoảng thời gian dài.
+
+Đây là một số điểm quan trọng về trạng thái "stale":
+
+Không có thông tin mới: Khi một PG ở trạng thái "stale", điều đó có nghĩa là Monitors không nhận được thông tin hoạt động mới từ PG đó.
+
+Không nhất thiết là lỗi: Một PG có thể trở nên "stale" mà không gây ra bất kỳ sự cố hoặc lỗi nào trong hệ thống. Tuy nhiên, việc này có thể là một dấu hiệu cho thấy có sự cố mạng hoặc vấn đề với OSD chứa PG.
+
+Đòi hỏi giám sát: Nếu một PG ở trạng thái "stale" trong một khoảng thời gian dài, nên kiểm tra cụm Ceph để đảm bảo rằng mọi thứ đang hoạt động bình thường. Việc này có thể liên quan đến việc kiểm tra tình trạng mạng, trạng thái OSD, và các thông tin khác.
+
+### INCONSISTENCY
+
+Khi nói đến "inconsistency", chúng ta thường đề cập đến sự không nhất quán trong dữ liệu giữa các bản sao của một Placement Group (PG) hoặc một đối tượng cụ thể. Ceph cố gắng duy trì dữ liệu nhất quán giữa các bản sao, nhưng trong một số trường hợp do lỗi phần cứng, lỗi phần mềm hoặc vấn đề mạng, dữ liệu có thể trở nên không nhất quán.
+
+Dưới đây là một số điểm quan trọng về "inconsistency" trong Ceph:
+
+Cảnh báo: Khi Ceph phát hiện ra sự không nhất quán trong dữ liệu, nó sẽ thường báo cáo thông qua các lệnh trạng thái như ceph health detail hoặc ceph pg dump_stuck.
+
+Nguyên nhân: Có nhiều nguyên nhân có thể dẫn đến sự không nhất quán. Điều này có thể bao gồm việc một OSD bị hỏng và sau đó trở lại trạng thái hoạt động mà không cần tái đồng bộ, lỗi ổ đĩa hoặc lỗi tại mức hệ điều hành.
+
+Khắc phục: Ceph cung cấp một công cụ gọi là ceph-objectstore-tool giúp khắc phục các vấn đề không nhất quán. Với công cụ này, bạn có thể sửa chữa đối tượng không nhất quán hoặc tái đồng bộ PGs.
+
+
+![Alt text](/Picture/Storage/state1.png)
+![Alt text](/Picture/Storage/state2.png)
+![Alt text](/Picture/Storage/state3.png)
+![Alt text](/Picture/Storage/state4.png)
