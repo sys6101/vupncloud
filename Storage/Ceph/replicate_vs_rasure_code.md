@@ -86,7 +86,7 @@ Một số ví dụ về các thông số trong Erasure-code profiles có thể 
 
 - Chống Chịu Lỗi: Erasure coding cho phép khôi phục dữ liệu từ các đoạn mã dự phòng ngay cả khi một số đoạn mã gốc bị hỏng, tăng cường khả năng chịu lỗi so với replicate.
 
-- Hiệu suất đọc/ghi: Do cần thực hiện phép toán mã học, hiệu suất đọc có thể bị ảnh hưởng một chút. Tuy nhiên, hiệu suất đọc vẫn có thể tốt và có thể được tinh chỉnh thông qua lựa chọn hồ sơ Erasure-code.
+- Hiệu suất đọc/ghi: Có thể thấp hơn so với Replicate vì quá trình mã hóa xoá yêu cầu tính toán phức tạp hơn. Tuy nhiên, mức độ này có thể được cải thiện với các tối ưu hóa phần mềm.
 
 **Replication**
 
@@ -98,10 +98,9 @@ Một số ví dụ về các thông số trong Erasure-code profiles có thể 
 
 - Sử Dụng Dung Lượng: replicate yêu cầu dung lượng lưu trữ lớn hơn, vì mỗi bản sao yêu cầu một lượng lưu trữ tương tự như dữ liệu gốc.
 
-- Hiệu Suất Ghi: Hiệu suất ghi có thể bị ảnh hưởng do cần cập nhật nhiều bản sao.
+- Hiệu suất đọc/ghi: Replicate thường có hiệu suất ghi tốt hơn so với Erasure Code, vì bạn chỉ cần sao chép dữ liệu lên nhiều nút.
 
 - Dung Lượng Đĩa Trống: Để replicate, bạn cần dung lượng đĩa trống đủ lớn để chứa tất cả các bản sao.
-
 
 
 
